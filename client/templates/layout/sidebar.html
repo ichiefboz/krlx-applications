@@ -1,0 +1,21 @@
+<template name="sidebar">
+	<div class="item">
+		<h4 class="ui inverted header" style="text-align: center;">KRLX Applications</h4>
+		{{#if currentUser}}
+			<img class="ui tiny centered circular white-bordered image" src="https://apps.carleton.edu/stock/ldapimage.php?id={{userNetID}}">
+			<p style="text-align: center;"><strong>{{userName}}</strong></p>
+		{{/if}}
+	</div>
+	<div class="item">
+		{{> loginButtons}}
+	</div>
+	<a class="item">Start an application</a>
+	<a class="item">My shows</a>
+	<a class="item">Schedule</a>
+	{{#if currentUser}}
+		<a class="item">Sign out</a>
+	{{else}}
+		<a class="item">Sign in</a>
+	{{/if}}
+	<a class="item">Back to krlx.org</a>
+</template>
