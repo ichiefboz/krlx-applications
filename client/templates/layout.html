@@ -1,15 +1,13 @@
 <template name="layout">
-	<div class="ui grid">
-		<div class="four wide computer tablet only column">
-			<div class="ui fixed left vertical inverted menu" style="min-height: 100%">
+	<div class="ui stackable grid">
+		<div class="three wide computer tablet only column">
+			<div class="ui fixed left vertical inverted menu" style="min-height: 100%; width: inherit">
 				{{> sidebar}}
 			</div>
 		</div>
-		<div class="twelve wide column">
-			<div class="ui grid container">
-				<div class="column">
-					I'm visible in all viewports. All your viewports are belong to us!
-				</div>
+		<div class="thirteen wide column">
+			<div class="ui main grid container">
+				{{> yield}}
 			</div>
 		</div>
 	</div>
