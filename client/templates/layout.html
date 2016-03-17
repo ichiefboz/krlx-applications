@@ -1,0 +1,31 @@
+<template name="layout">
+	<div class="ui grid">
+		<div class="four wide computer tablet only column">
+			<div class="ui fixed left vertical inverted menu" style="min-height: 100%">
+				<div class="item">
+					<h4 class="ui inverted header" style="text-align: center;">KRLX Applications</h4>
+					{{#if currentUser}}
+						<p style="text-align: center;">Signed in!</p>
+					{{else}}
+						<p style="text-align: center;">You're not signed in yet!</p>
+					{{/if}}
+				</div>
+				<div class="item">
+					{{> loginButtons}}
+				</div>
+				<a class="item">Start an application</a>
+				<a class="item">My shows</a>
+				<a class="item">All shows</a>
+				<a class="item">Schedule</a>
+				<a class="item">Request a cover</a>
+			</div>
+		</div>
+		<div class="twelve wide column">
+			<div class="ui grid container">
+				<div class="column">
+					I'm visible in all viewports. All your viewports are belong to us!
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
