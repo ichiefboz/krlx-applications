@@ -1,19 +1,16 @@
 Template.sidebar.helpers({
 	userNetID: function() {
 		if(Meteor.user()) {
-			if(Meteor.user().services) {
-				var email = Meteor.user().services.google.email;
-				if(email) {
-					return email.split("@")[0];
-				}
+			if(Meteor.user().krlx) {
+				return Meteor.user().krlx.netid;
 			}
 		}
 		return "";
 	},
 	userName: function() {
 		if(Meteor.user()) {
-			if(Meteor.user().services) {
-				return Meteor.user().services.google.name;
+			if(Meteor.user().krlx) {
+				return Meteor.user().krlx.name;
 			}
 		}
 		return "";
