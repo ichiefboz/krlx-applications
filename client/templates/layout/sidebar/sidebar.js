@@ -19,5 +19,15 @@ Template.sidebar.helpers({
 Template.sidebar.events({
 	"click a#myShowsLink": function() {
 		Router.go("shows.my.list");
+	},
+	"click a#signOutLink": function() {
+		Meteor.logout();
+	},
+	"click a#signInLink": function() {
+		Meteor.loginWithGoogle({
+			loginUrlParameters: {
+				hd: "carleton.edu"
+			}
+		});
 	}
 })
