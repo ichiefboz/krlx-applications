@@ -30,5 +30,14 @@ Template.sidebar.events({
 				hd: "carleton.edu"
 			}
 		});
+	},
+	"click a#startLink": function() {
+		if(Router.current().route.getName() != "shows.application") {
+			Meteor.call("createShow", "Standard", function(error, result) {
+				if(result) {
+					Router.go("shows.application", {_id: result, step: 1})
+				}
+			});
+		}
 	}
 })
