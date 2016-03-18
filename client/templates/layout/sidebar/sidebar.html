@@ -2,7 +2,12 @@
 	{{#if currentUser}}
 		<div class="item">
 			<img class="ui tiny centered circular white-bordered image" src="https://apps.carleton.edu/stock/ldapimage.php?id={{userNetID}}">
-			<p style="text-align: center;"><strong>{{userName}}</strong></p>
+			<p style="text-align: center;">
+				<strong>{{userName}}</strong>
+				{{#if userBoard}}
+					<br>Board of Directors
+				{{/if}}
+			</p>
 		</div>
 	{{/if}}
 	<a class="{{activeItem 'shows.application'}} item" id="startLink">Start application</a>

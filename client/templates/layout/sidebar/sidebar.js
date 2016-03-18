@@ -17,6 +17,14 @@ Template.sidebar.helpers({
 	},
 	activeItem: function(destination) {
 		return (Router.current().route.getName() == destination) ? "active" : "";
+	},
+	userBoard: function() {
+		if(Meteor.user()) {
+			if(Meteor.user().krlx) {
+				return Meteor.user().krlx.board;
+			}
+		}
+		return "";
 	}
 })
 
