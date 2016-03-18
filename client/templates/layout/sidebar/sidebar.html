@@ -8,13 +8,13 @@
 	<div class="item">
 		{{> loginButtons}}
 	</div>
-	<a class="item">Start application</a>
-	<a class="item">My shows</a>
-	<a class="item">Schedule</a>
+	<a class="item" id="startLink">Start application</a>
+	<a class="item" id="myShowsLink">My shows</a>
+	<a class="item" id="scheduleLink">Schedule</a>
 	{{#if currentUser}}
-		<a class="item">Sign out</a>
+		<a class="item" id="signOutLink">Sign out</a>
 	{{else}}
-		<a class="item">Sign in</a>
+		<a class="item" id="signInLink">Sign in</a>
 	{{/if}}
-	<a class="item">Back to krlx.org</a>
+	<a class="item" href="http://www.krlx.org/">Back to krlx.org</a>
 </template>

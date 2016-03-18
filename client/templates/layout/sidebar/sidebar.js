@@ -15,3 +15,9 @@ Template.sidebar.helpers({
 		return "";
 	}
 })
+
+Template.sidebar.events({
+	"click a#myShowsLink": function() {
+		Router.go("shows.my.list");
+	}
+})

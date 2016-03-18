@@ -1,9 +1,9 @@
-.toc.item {
+.ui.menu .toc.item {
 	display: none;
 }
 
-@media only screen and (max-width: 700px) {
-	.toc.item {
+@media only screen and (max-width: 767px) {
+	.ui.menu .toc.item {
 		display: block;
 	}
 }
