@@ -5,9 +5,9 @@
 			<p style="text-align: center;"><strong>{{userName}}</strong></p>
 		</div>
 	{{/if}}
-	<a class="item" id="startLink">Start application</a>
-	<a class="item" id="myShowsLink">My shows</a>
-	<a class="item" id="scheduleLink">Schedule</a>
+	<a class="{{activeItem 'shows.application'}} item" id="startLink">Start application</a>
+	<a class="{{activeItem 'shows.my.list'}} item" id="myShowsLink">My shows</a>
+	<a class="{{activeItem 'schedule'}} item" id="scheduleLink">Schedule</a>
 	{{#if currentUser}}
 		<a class="item" id="signOutLink">Sign out</a>
 	{{else}}

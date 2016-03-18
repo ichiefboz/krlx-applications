@@ -14,6 +14,9 @@ Template.sidebar.helpers({
 			}
 		}
 		return "";
+	},
+	activeItem: function(destination) {
+		return (Router.current().route.getName() == destination) ? "active" : "";
 	}
 })
 
