@@ -7,7 +7,7 @@ Meteor.publish("users", function() {
 Meteor.publish("myShows", function() {
 	if(this.userId) {
 		var userNetID = Meteor.users.findOne({"_id": this.userId});
-		return Shows.find({$or: [{owner: userNetID}, {djs: userNetID}]});
+		return Shows.find({});
 	} else {
 		return this.ready();
 	}

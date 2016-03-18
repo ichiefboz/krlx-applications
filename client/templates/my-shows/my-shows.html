@@ -4,6 +4,27 @@
 		<p><button class="ui primary button">Start New Application<i class="right arrow icon"></i></button></p>
 		<h3 class="ui header">Current Shows</h3>
 		<h3 class="ui header">Current Applications</h3>
+		{{#if currentApplications}}
+			<table class="ui yellow table">
+				<thead>
+					<tr>
+						<th>Show Name</th>
+						<th>DJs</th>
+						<th>Submitted</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each currentApplications}}
+						<tr>
+							<td>{{title}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{else}}
+			<p>Looks like you don't have any active applications at the moment.</p>
+		{{/if}}
 		<h3 class="ui header">Previous Shows</h3>
 	</div>
 </template>
