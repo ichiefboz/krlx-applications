@@ -38,11 +38,19 @@ Template.step1.events({
 		}
 		Session.set("djs", djs);
 	},
-	"change .dj-input": function(event) {
-		var index = parseInt(event.currentTarget.dataset.index);
-		var newValue = event.currentTarget.value;
+	"change .dj-input": function() {
 		var djs = Session.get("djs");
-		djs[index] = newValue;
-		Session.set("djs", djs);
+		var newDJs = [];
+		for(var i = 0; i < djs.length; i++) {
+			var newValue = $("input[name='dj-"+i+"']").val().trim();
+			if(newValue.indexOf("@") >= 0) {
+				newValueBits = newValue.split("@");
+				newValue = newValueBits[0];
+			}
+			if(newDJs.indexOf(newValue) == -1 && newValue.length > 0) {
+				newDJs.push(newValue);
+			}
+		}
+		Session.set("djs", newDJs);
 	}
 })

@@ -14,7 +14,7 @@
 			{{#each dj in djList}}
 				<div class="field">
 					<label>DJ {{displayIndex @index}}</label>
-					<input type="text" class="dj-input" data-index="{{@index}}" readonly="{{readonly dj}}" name="dj-{{@index}}" placeholder="fschiller" value="{{dj}}">
+					<input type="text" class="dj-input" data-index="{{@index}}" {{readonly dj}} name="dj-{{@index}}" placeholder="fschiller" value="{{dj}}">
 				</div>
 			{{/each}}
 		</form>
