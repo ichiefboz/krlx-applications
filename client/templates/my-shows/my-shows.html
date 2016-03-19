@@ -1,7 +1,6 @@
 <template name="myShows">
 	<div class="column">
 		<h1 class="ui header">My Shows</h1>
-		<p><button class="ui primary button">Start New Application<i class="right arrow icon"></i></button></p>
 		<h3 class="ui header">Current Shows</h3>
 		<h3 class="ui header">Current Applications</h3>
 		{{#if hasApplications}}
@@ -18,6 +17,12 @@
 					{{#each currentApplications}}
 						<tr>
 							<td>{{title}}</td>
+							<td></td>
+							<td>Incomplete</td>
+							<td>
+								<a href="{{pathFor route='shows.application'}}" class="ui primary circular icon button"><i class="edit icon"></i></a>
+								<a href="" class="ui circular icon button"><i class="delete icon"></i></a>
+							</td>
 						</tr>
 					{{/each}}
 				</tbody>
@@ -26,5 +31,6 @@
 			<p>Looks like you don't have any active applications at the moment.</p>
 		{{/if}}
 		<h3 class="ui header">Previous Shows</h3>
+		<p>You don't have any previous shows listed in the system. (This will only list shows from Fall 2015 onwards; IT engineers are currently transferring older show data.)</p>
 	</div>
 </template>
