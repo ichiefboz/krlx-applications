@@ -2,6 +2,9 @@ Template.step1.helpers({
 	djList: function() {
 		return Session.get("djs");
 	},
+	readonly: function(value) {
+		return (value == this.owner || value == Meteor.user().krlx.netid) ? "readonly" : "";
+	},
 	displayIndex: function(index) {
 		return index + 1;
 	}
