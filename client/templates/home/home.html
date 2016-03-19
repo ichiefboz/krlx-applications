@@ -1,0 +1,26 @@
+<template name="home">
+	<div class="column">
+		<h1 class="ui header">Welcome to KRLX</h1>
+		{{#if currentUser}}
+			<p><button class="ui large primary new-app-button button">Start New Application<i class="right arrow icon"></i></button></p>
+			{{> myShows ignoreHeaders=true}}
+		{{else}}
+			<p>You've come to the right place to apply for a show on KRLX - Carleton's student-run radio station.</p>
+			<p><button class="ui large primary sign-in-button button">Sign In<i class="right arrow icon"></i></button></p>
+
+			<h3>Get Started</h3>
+			<p>If you're ready to get started, click the "Sign In" button above. You'll be prompted to sign in with your Carleton username and password, and then you'll be asked to grant consent to release your information to KRLX.</p>
+			<p>If you've never set up <a href="https://docs.carleton.edu">CarlDocs</a>, you'll be prompted to complete a couple extra steps before you'll be signed in.</p>
+			<p>Once signed in, click "Start Application", either on this page or in the sidebar. If you're on a phone, tap the <i class="sidebar icon"></i>sidebar icon at the top of your screen to show the sidebar.</p>
+
+			<h3>KRLX Show Types</h3>
+			<p>KRLX offers three different show types to students. You can have several applications active for the term. If there's room in the schedule, you might be able to get more than one show.</p>
+			<p>The show types KRLX offers are:</p>
+			<ul>
+				<li><strong>Standard:</strong> a weekly radio show for an individual or small group</li>
+				<li><strong>Bandemonium:</strong> two hours dedicated to a single artist, genre, or other theme within music</li>
+				<li><strong>Student Org:</strong> a weekly show for student organizations ("orgs")</li>
+			</ul>
+		{{/if}}
+	</div>
+</template>

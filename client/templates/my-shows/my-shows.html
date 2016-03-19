@@ -1,6 +1,8 @@
 <template name="myShows">
 	<div class="column">
-		<h1 class="ui header">My Shows</h1>
+		{{#unless ignoreHeaders}}
+			<h1 class="ui header">My Shows</h1>
+		{{/unless}}
 		<h3 class="ui header">Current Shows</h3>
 		<h3 class="ui header">Current Applications</h3>
 		{{#if hasApplications}}
