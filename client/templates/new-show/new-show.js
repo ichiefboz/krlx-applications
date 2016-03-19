@@ -40,5 +40,15 @@ Template.newShow.events({
 	"click .regenerate-random-name": function() {
 		var newName = randomName();
 		$("#title").val(newName);
+	},
+	"click .create-show": function(event) {
+		var showType = event.currentTarget.dataset.type;
+		var showTitle = $("#title").val().trim();
+		if(showTitle.length == 0) showTitle = randomName();
+		Meteor.call("createShow", showType, showTitle, function(error, result) {
+			if(result) {
+				Router.go("shows.application", {_id: result, step: 1})
+			}
+		});
 	}
 })
