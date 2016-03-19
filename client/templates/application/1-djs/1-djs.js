@@ -19,6 +19,22 @@ Template.step1.events({
 			Session.set("djs", djs);
 		}
 	},
+	"click #removeDJ": function() {
+		var djs = Session.get("djs");
+		console.log(djs);
+		for(var i = djs.length - 1; i >= 0; i--) {
+			// Break if there's only one item
+			if(i == 0) break;
+			// Continue to next item if the owner is selected
+			if(djs[i] == this.owner) continue;
+			// Continue to next item if current user is selected
+			if(djs[i] == Meteor.user().krlx.netid) continue;
+			// Remove item i
+			djs.splice(i, 1);
+			break;
+		}
+		Session.set("djs", djs);
+	},
 	"change .dj-input": function(event) {
 		var index = parseInt(event.currentTarget.dataset.index);
 		var newValue = event.currentTarget.value;
