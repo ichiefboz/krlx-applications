@@ -29,7 +29,13 @@ var randomName = function() {
 }
 
 Template.newShow.helpers({
-	randomShowName: randomName
+	randomShowName: randomName,
+	errorPossibilities: [
+		{code: "too-many-incomplete-applications", header: "Too many incomplete applications", message: "You have too many outstanding applications for this term and cannot create another. You must cancel an existing application if you wish to create a new one. If you absolutely must create an additional application, please email an IT engineer."},
+		{code: "not-authorized", header: "Not Signed In", message: "You need to be signed in to create an application! Click \"Sign In\" below to sign in with your Carleton account, then try again.", flags: ["nevermind", "signin"]},
+		{code: "invalid-type", header: "Invalid Type Selected", message: "Whoops, something went wrong and we don't know what show type you want! Reload the page and try again."},
+		{code: "fcc-dirty-words", header: "Show Name Not Permitted", message: "KRLX regulations prohibit show titles from containing any of the seven dirty words. Please choose a different show title, or click the \"Get another suggestion\" link to generate a random title."}
+	]
 })
 
 Template.newShow.rendered = function() {
@@ -48,6 +54,9 @@ Template.newShow.events({
 		Meteor.call("createShow", showType, showTitle, function(error, result) {
 			if(result) {
 				Router.go("shows.application", {_id: result, step: 1})
+			}
+			if(error) {
+				$("#error-"+error.error).modal("show");
 			}
 		});
 	}

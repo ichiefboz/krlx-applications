@@ -1,0 +1,20 @@
+<template name="errorModal">
+	<div class="ui modal" id="error-{{code}}">
+	  <div class="header">{{header}}</div>
+	  <div class="content">
+	    <p>{{message}}</p>
+	  </div>
+		<div class="actions">
+			{{#if flags}}
+				{{#if contains 'nevermind'}}
+					<div class="ui cancel button">Never mind</div>
+				{{/if}}
+				{{#if contains 'signin'}}
+					<div class="ui ok primary button sign-in-button">Sign in</div>
+				{{/if}}
+			{{else}}
+				<div class="ui cancel button">Okay</div>
+			{{/if}}
+		</div>
+	</div>
+</template>
