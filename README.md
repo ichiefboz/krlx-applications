@@ -11,8 +11,7 @@ If you're interested in running this application locally, follow these steps:
 3. Clone the repository and expand if necessary.
 4. Switch into your project directory and run the `meteor` command. This will initialize everything and download the correct packages. **Be warned: This process may take a while the first time**, since CSS files will need to be generated.
 5. Connect to your Meteor database in your terminal by running `meteor mongo`.
-6. Create a Google OAuth client ID and secret at <https://console.developers.google.com>, and store them in your database by running the following command in your terminal:
-
+6. Create a Google OAuth client ID and secret at <https://console.developers.google.com>. Make sure you allow requests from `http://localhost:3000` and send OAuth callbacks to `http://localhost:3000/_oauth/google`. Full instructions for how to do this are on the wiki. Once you have these credentials, store them in your database by running the following command in your terminal:
 ```
 db.meteor_accounts_loginServiceConfiguration.upsert({service: "google"}, {
   "clientId" : "YOUR_CLIENT_ID",
@@ -21,9 +20,9 @@ db.meteor_accounts_loginServiceConfiguration.upsert({service: "google"}, {
 });
 ```
 
-Make sure you allow requests from `http://localhost:3000` and send OAuth callbacks to `http://localhost:3000/_oauth/google`. Full instructions for how to do this are on the wiki.
+Finally, you can go to `localhost:3000` in your browser. If you see a sidebar on the left and "Welcome to KRLX" on the right, you've installed the project correctly.
 
-7. Go to `localhost:3000` in your browser. If you see a sidebar on the left and "Welcome to KRLX" on the right, you've installed the project correctly.
+**Be warned: This system ONLY works with a Carleton account!** This is because the `hd` flag for Google login is set to `carleton.edu` at all locations where login is used.
 
 # Contributing
 I greatly appreciate contributions to the project and will review and accept pull requests. Please do check out the wiki for the "spec sheet" of what the project will accomplish in full.
