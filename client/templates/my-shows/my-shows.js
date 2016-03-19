@@ -4,6 +4,9 @@ Template.myShows.helpers({
 	},
 	hasApplications: function() {
 		return (Shows.find({}).count() > 0);
+	},
+	isOwner: function() {
+		return (this.owner == Meteor.user().krlx.netid);
 	}
 })
 
