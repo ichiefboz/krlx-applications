@@ -29,6 +29,9 @@ Template.sidebar.helpers({
 })
 
 Template.sidebar.events({
+	"click a#homeLink": function() {
+		Router.go("root");
+	},
 	"click a#myShowsLink": function() {
 		Router.go("shows.my.list");
 	},
