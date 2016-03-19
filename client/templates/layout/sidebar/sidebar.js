@@ -43,12 +43,6 @@ Template.sidebar.events({
 		});
 	},
 	"click a#startLink": function() {
-		if(Router.current().route.getName() != "shows.application") {
-			Meteor.call("createShow", "Standard", function(error, result) {
-				if(result) {
-					Router.go("shows.application", {_id: result, step: 1})
-				}
-			});
-		}
+		Router.go("shows.application.new");
 	}
 })
