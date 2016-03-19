@@ -15,6 +15,13 @@ Template.step1.created = function() {
 }
 
 Template.step1.events({
+	"click #myShowsButton": function() {
+		Router.go("shows.my.list");
+	},
+	"submit .ui.form": function(event) {
+		event.preventDefault();
+		var djs = Session.get("djs");
+	},
 	"click #addDJ": function() {
 		var djs = Session.get("djs");
 		if(djs[djs.length - 1].trim().length > 0) {

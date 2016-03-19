@@ -8,8 +8,8 @@
 		<h1>DJ List</h1>
 		<p>Please enter the Carleton username (<code>fschiller</code>) or email address (<code>fschiller@carleton.edu</code>) belonging to each DJ in your show. Order doesn't matter.</p>
 		<p>If you're flying solo, you don't need to touch anything here.</p>
-		<p><button class="ui primary labeled icon button" id="addDJ"><i class="add user icon"></i>Add DJ</button>
-			<button class="ui labeled icon button" id="removeDJ"><i class="remove user icon"></i>Remove DJ</button></p>
+		<p><button class="ui primary button" id="addDJ">Add DJ</button>
+			<button class="ui button" id="removeDJ">Remove DJ</button></p>
 		<form class="ui form">
 			{{#each dj in djList}}
 				<div class="field">
@@ -17,6 +17,10 @@
 					<input type="text" class="dj-input" data-index="{{@index}}" {{readonly dj}} name="dj-{{@index}}" placeholder="fschiller" value="{{dj}}">
 				</div>
 			{{/each}}
+			<div class="field">
+				<button class="ui basic button" id="myShowsButton" type="button">My Shows</button>
+				<button class="ui green button" id="continueButton" type="submit">Continue</button>
+			</div>
 		</form>
 	</div>
 </template>
