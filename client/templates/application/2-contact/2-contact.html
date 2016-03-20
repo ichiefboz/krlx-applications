@@ -1,0 +1,16 @@
+<template name="step2">
+	<div class="column">
+		<h1>DJ Contact Details</h1>
+		<p>Please enter or verify the contact details for each person in your group. All fields are required, except campus phone (which is optional, but please provide your campus extension if you have one).</p>
+		<p><strong>Terms of experience:</strong> Enter the terms of experience for <em>everyone in your group</em>. If you're new to radio, choose zero (0).</p>
+		<form class="ui form">
+			{{#each dj in djs}}
+				{{> contactForm (getDJData dj)}}
+			{{/each}}
+		</form>
+	</div>
+</template>
+
+<template name="contactForm">
+	<h1>{{netid}}</h1>
+</template>
