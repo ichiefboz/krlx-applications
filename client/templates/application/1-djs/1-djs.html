@@ -22,5 +22,8 @@
 				<button class="ui green button" id="continueButton" type="submit">Continue</button>
 			</div>
 		</form>
+		{{#each errorPossibilities}}
+			{{> errorModal}}
+		{{/each}}
 	</div>
 </template>

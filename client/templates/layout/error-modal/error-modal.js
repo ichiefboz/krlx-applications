@@ -17,5 +17,12 @@ Template.errorModal.rendered = function() {
 		    }
 			});
 		}
+		if(this.data.flags.indexOf("myshows") >= 0) {
+			$("#error-"+this.data.code).modal({
+				onApprove : function() {
+					Router.go("shows.my.list");
+		    }
+			});
+		}
 	}
 }
