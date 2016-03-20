@@ -28,11 +28,11 @@ Template.step1.events({
 		event.preventDefault();
 		var djs = Session.get("djs");
 		Meteor.call("updateShowStep1", this._id, djs, function(error, result) {
-			if(result) {
-				Router.go("shows.application", {_id: result, step: 2});
-			}
 			if(error) {
 				$("#error-"+error.error).modal("show");
+			}
+			if(result) {
+				Router.go("shows.application", {_id: result, step: 2});
 			}
 		});
 	},
