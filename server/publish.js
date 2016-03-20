@@ -11,4 +11,17 @@ Meteor.publish("myShows", function() {
 	} else {
 		return this.ready();
 	}
-})
+});
+
+Meteor.publish("djsInShow", function(showID) {
+	var show = Shows.findOne({_id: showID});
+	return DJs.find({netid: {$in: show.djs}}, {fields: {
+		"netid": 1,
+		"name": 1,
+		"email": 1,
+		"phone": 1,
+		"campusPhone": 1,
+		"year": 1,
+		"terms": 1
+	}});
+});
