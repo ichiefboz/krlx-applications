@@ -2,11 +2,18 @@
 	<div class="column">
 		<h1>DJ Contact Details</h1>
 		<p>Please enter or verify the contact details for each person in your group. All fields are required, except campus phone (which is optional, but please provide your campus extension if you have one).</p>
-		<p><strong>Terms of experience:</strong> Enter the terms of experience for <em>everyone in your group</em>. If you're new to radio, choose zero (0).</p>
+		<p><strong>Terms of experience:</strong> Enter the terms of experience for <em>everyone in your group</em>. If you're new to radio, enter zero (0).</p>
 		<form class="ui form">
+			<div class="ui error message">
+				<div class="header">Ruh roh! Something went wrong - fix the following and try submitting again.</div>
+			</div>
 			{{#each dj in djs}}
 				{{> contactForm (getDJData dj)}}
 			{{/each}}
+			<div class="field">
+				<button class="ui basic button" id="goBackButton" type="button">Go back</button>
+				<button class="ui green button" id="continueButton" type="submit">Continue</button>
+			</div>
 		</form>
 	</div>
 </template>
@@ -20,22 +27,18 @@
 	      <input type="text" name="name-{{netid}}" placeholder="Friedrich Schiller" value="{{name}}">
 	    </div>
 			<div class="field">
-	      <label>Year</label>
-				<select class="ui dropdown" name="year-{{netid}}">
-		      {{#each year in years}}
-						<option value="{{year}}" {{selected year}}>{{year}}</option>
-					{{/each}}
-		    </select>
+	      <label>Class Year</label>
+				<input type="tel" name="year-{{netid}}" placeholder="{{currentYear}}" value="{{displayYear}}">
 			</div>
 			<div class="field">
 	      <label>Terms of Experience</label>
-	      <input type="text" name="terms-{{netid}}" placeholder="0" value="{{terms}}">
+	      <input type="tel" name="terms-{{netid}}" placeholder="0" value="{{terms}}">
 	    </div>
 		</div>
 		<div class="three fields">
 			<div class="field">
 	      <label>Email Address</label>
-	      <input type="email" name="email-{{netid}}" placeholder="fschiller@carleton.edu" value="{{email}}">
+	      <input type="email" name="email-{{netid}}" placeholder="fschiller@carleton.edu" value="{{email}}" readonly>
 	    </div>
 			<div class="field">
 	      <label>Cell Phone Number</label>
