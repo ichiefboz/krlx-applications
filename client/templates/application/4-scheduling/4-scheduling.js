@@ -18,11 +18,44 @@ Template.step4.helpers({
 		var conflicts = Session.get("classConflicts");
 		return (conflicts.indexOf(value) >= 0);
 	},
-	conflicts: function() {
-		return Session.get("conflicts");
+	otherConflicts: function() {
+		return Session.get("otherConflicts");
+	},
+	weekdays: [
+		{day: "Sunday", abbr: "sun"},
+		{day: "Monday", abbr: "mon"},
+		{day: "Tuesday", abbr: "tue"},
+		{day: "Wednesday", abbr: "wed"},
+		{day: "Thursday", abbr: "thu"},
+		{day: "Friday", abbr: "fri"},
+		{day: "Saturday", abbr: "sat"}
+	],
+	times: function(mode) {
+		var times = [];
+		for(var hour = 0; hour < 24; hour++) {
+			var am = (hour >= 12) ? "PM" : "AM";
+			var displayHour = hour;
+			if(displayHour >= 12) displayHour -= 12;
+			if(displayHour == 0) displayHour = 12;
+
+			times.push({value: hour + ":00", displayTime: displayHour + ":00 " + am});
+			times.push({value: hour + ":30", displayTime: displayHour + ":30 " + am});
+		}
+		if(mode == "end") {
+			times.splice(0, 1);
+			times.push({value: "24:00", displayTime: "12:00 AM"});
+		}
+		return times;
+	},
+	timeSelect: function(value, target) {
+		return (value == target) ? "selected" : "";
+	},
+	isChecked: function(value, list) {
+		return (list.indexOf(value) >= 0) ? "checked" : "";
 	}
 })
 
 Template.step4.rendered = function() {
 	$(".ui.checkbox").checkbox();
+	$("select.dropdown").dropdown();
 }
