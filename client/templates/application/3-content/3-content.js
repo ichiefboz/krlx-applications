@@ -45,8 +45,29 @@ Template.step3.rendered = function() {
 Template.step3.events({
 	"submit .ui.form": function(event) {
 		event.preventDefault();
+		var form = event.currentTarget;
 		if($(".ui.form").form("is valid")) {
-			alert("Validation successful");
+			var data = {};
+			if(this.type == "Student Org") data.sponsor = form.sponsor.value;
+			if(this.type != "Bandemonium") data.title = form.title.value;
+			if(this.type == "Bandemonium") {
+				data.theme = form.theme.value;
+				data.why = form.why.value;
+			}
+			data.description = form.description.value;
+			Meteor.call("updateShow", this._id, data);
+			if(this.step <= 3) {
+				Meteor.call("incrementStep", this._id, 4, function(error, result) {
+					if(result) {
+						Router.go("shows.application", {_id: this._id, step: 4});
+					}
+				});
+			} else {
+				Router.go("shows.application", {_id: this._id, step: 4});
+			}
 		}
+	},
+	"click #goBackButton": function() {
+		Router.go("shows.application", {_id: this._id, step: 2});
 	}
 })
