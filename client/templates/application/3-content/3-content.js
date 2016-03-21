@@ -59,7 +59,7 @@ Template.step3.events({
 			if(this.step <= 3) {
 				Meteor.call("incrementStep", this._id, 4, function(error, result) {
 					if(result) {
-						Router.go("shows.application", {_id: this._id, step: 4});
+						Router.go("shows.application", {_id: result, step: 4});
 					}
 				});
 			} else {
