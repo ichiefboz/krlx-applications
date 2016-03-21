@@ -2,9 +2,11 @@ Template.step4.created = function() {
 	if(this.data.conflicts) {
 		Session.set("classConflicts", this.data.conflicts.classes);
 		Session.set("otherConflicts", this.data.conflicts.other);
+		Session.set("preferences", this.data.preferences);
 	} else {
 		Session.set("classConflicts", []);
 		Session.set("otherConflicts", []);
+		Session.set("preferences", []);
 	}
 }
 
@@ -21,6 +23,12 @@ Template.step4.helpers({
 	otherConflicts: function() {
 		return Session.get("otherConflicts");
 	},
+	setIndex: function(conflict, index) {
+		conflict.conflictIndex = index;
+	}
+})
+
+Template.recurringBlock.helpers({
 	weekdays: [
 		{day: "Sunday", abbr: "sun"},
 		{day: "Monday", abbr: "mon"},
@@ -52,6 +60,9 @@ Template.step4.helpers({
 	},
 	isChecked: function(value, list) {
 		return (list.indexOf(value) >= 0) ? "checked" : "";
+	},
+	print: function() {
+		console.log(this);
 	}
 })
 

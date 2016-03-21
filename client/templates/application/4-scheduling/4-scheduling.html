@@ -24,54 +24,74 @@
 			<div class="ui segment">
 				<h3>Other Conflicts</h3>
 				<p>Please enter your other recurring conflicts here, such as work study, labs, art classes, or sports.</p>
-				<p><button class="ui primary button" id="addDJ">Add conflict</button>
-					<button class="ui button" id="removeDJ">Remove conflict</button></p>
-				{{#each otherConflicts}}
-					<div class="ui segment">
-						<div class="fields">
-							<div class="four wide field">
-								<div class="grouped fields">
-									<label>Days</label>
-									{{#let conflictIndex=@index daysChecked=days}}
-										{{#each weekdays}}
-										<div class="field">
-											<div class="ui checkbox">
-												<input type="checkbox" name="conflictDays-{{conflictIndex}}" tabindex="0" class="hidden" value="{{abbr}}" {{isChecked abbr daysChecked}}>
-												<label>{{day}}</label>
-											</div>
-										</div>
-										{{/each}}
-									{{/let}}
-								</div>
-							</div>
-							<div class="twelve wide field">
-								<div class="field" style="margin-bottom: 1em">
-									<label>Start time</label>
-									<select class="dropdown" name="conflictEnd-{{@index}}">
-										<option value="">Start time</option>
-										{{#let startTime=start}}
-											{{#each times "start"}}
-												<option value="{{value}}" {{timeSelect value startTime}}>{{displayTime}}</option>
-											{{/each}}
-										{{/let}}
-									</select>
-								</div>
-								<div class="field">
-									<label>End time</label>
-									<select class="dropdown" name="conflictEnd-{{@index}}">
-										<option value="">End time</option>
-										{{#let endTime=end}}
-											{{#each times "end"}}
-												<option value="{{value}}" {{timeSelect value endTime}}>{{displayTime}}</option>
-											{{/each}}
-										{{/let}}
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
+				<p><button class="ui primary button" id="addConflict">Add conflict</button>
+					<button class="ui button" id="addCommon">Add common conflict</button>
+					<button class="ui button" id="removeConflict">Remove conflict</button></p>
+				{{#each conflict in otherConflicts}}
+					{{setIndex conflict @index}}
+					{{> recurringBlock conflict}}
 				{{/each}}
 			</div>
+			<div class="ui segment">
+				<h3>Preferences</h3>
+				<p>Please enter your preferences here, order doesn't matter.</p>
+				<p><button class="ui primary button" id="addPref">Add preference</button>
+					<button class="ui button" id="removePref">Remove preference</button></p>
+				{{#each preference in preferences}}
+					{{setIndex preference @index}}
+					{{> recurringBlock preference}}
+				{{/each}}
+			</div>
+			<div class="field" style="margin-bottom: 1em">
+				<button class="ui basic button" id="goBackButton" type="button">Go back</button>
+				<button class="ui green button" id="continueButton" type="submit">Continue</button>
+			</div>
 		</form>
+	</div>
+</template>
+
+<template name="recurringBlock">
+	<div class="ui segment">
+		<div class="fields">
+			<div class="four wide field">
+				<div class="grouped fields">
+					<label>Days</label>
+					{{#let conflictIndex=itemIndex daysChecked=days}}
+						{{#each weekdays}}
+						<div class="field">
+							<div class="ui checkbox">
+								<input type="checkbox" name="conflictDays-{{conflictIndex}}" tabindex="0" class="hidden" value="{{abbr}}" {{isChecked abbr daysChecked}}>
+								<label>{{day}}</label>
+							</div>
+						</div>
+						{{/each}}
+					{{/let}}
+				</div>
+			</div>
+			<div class="twelve wide field">
+				<div class="field" style="margin-bottom: 1em">
+					<label>Start time</label>
+					<select class="dropdown" name="conflictEnd-{{itemIndex}}">
+						<option value="">Start time</option>
+						{{#let startTime=start}}
+							{{#each times "start"}}
+								<option value="{{value}}" {{timeSelect value startTime}}>{{displayTime}}</option>
+							{{/each}}
+						{{/let}}
+					</select>
+				</div>
+				<div class="field">
+					<label>End time</label>
+					<select class="dropdown" name="conflictEnd-{{itemIndex}}">
+						<option value="">End time</option>
+						{{#let endTime=end}}
+							{{#each times "end"}}
+								<option value="{{value}}" {{timeSelect value endTime}}>{{displayTime}}</option>
+							{{/each}}
+						{{/let}}
+					</select>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
