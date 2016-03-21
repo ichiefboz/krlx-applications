@@ -3,6 +3,33 @@
 		<h1>Scheduling</h1>
 		<form class="ui form">
 			<div class="ui segment" style="padding-bottom: 0px">
+				<h3>Basics</h3>
+				<div class="two fields">
+					<div class="grouped fields">
+						<label>Preferred Length</label>
+						{{#each lengthOptions}}
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" tabindex="0" class="hidden" name="preferred-length" value="{{item}}" checked="{{preferredLengthChecked item}}">
+								<label>{{display}}</label>
+							</div>
+						</div>
+						{{/each}}
+					</div>
+					<div class="grouped fields">
+						<label>Request safe harbor? <a id="explainSafeHarbor">(Huh?)</a></label>
+						{{#each safeHarborOptions}}
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" tabindex="0" class="hidden" name="request-safe-harbor" value="{{item}}" checked="{{safeHarborChecked item}}">
+								<label>{{display}}</label>
+							</div>
+						</div>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+			<div class="ui segment" style="padding-bottom: 0px">
 				<h3>Classes</h3>
 				<p>Check the boxes that correspond to your class schedule.</p>
 				<div class="three fields">

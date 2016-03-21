@@ -42,7 +42,32 @@ Template.step4.helpers({
 			{days: "tue thu", start: "9:15", end: "11:45", title: "Tu/Th morning art (9:15 - 11:45 AM)"},
 			{days: "tue thu", start: "13:15", end: "15:45", title: "Tu/Th afternoon art (1:15 - 3:45 PM)"}
 		]}
-	]
+	],
+	lengthOptions: [
+		{item: 30, display: "30 minutes (½ hour)"},
+		{item: 60, display: "60 minutes (1 hour)"},
+		{item: 90, display: "90 minutes (1½ hours)"},
+		{item: 120, display: "120 minutes (2 hours)"}
+	],
+	safeHarborOptions: [
+		{item: "yes", display: "Yes please"},
+		{item: "no", display: "No thanks"},
+		{item: "meh", display: "Meh, doesn't matter to me"}
+	],
+	preferredLengthChecked: function(value) {
+		if(this.preferredLength) {
+			return this.preferredLength == value;
+		} else {
+			return value == 60;
+		}
+	},
+	safeHarborChecked: function(value) {
+		if(this.safeHabor) {
+			return this.safeHabor == value;
+		} else {
+			return value == "meh";
+		}
+	}
 })
 
 Template.recurringBlock.helpers({
@@ -81,6 +106,7 @@ Template.recurringBlock.helpers({
 })
 
 Template.step4.rendered = function() {
+	$('.ui.radio.checkbox').checkbox();
 	$(".ui.checkbox").checkbox();
 	$("select.dropdown").dropdown();
 }
