@@ -120,6 +120,12 @@ Template.step4.events({
 		var blobs = Session.get(sessionBlob);
 		blobs.splice(-1, 1);
 		Session.set(sessionBlob, blobs);
+	},
+	"submit .ui.form": function(event) {
+		event.preventDefault();
+	},
+	"click #goBackButton": function() {
+		Router.go("shows.application", {_id: this._id, step: 3});
 	}
 })
 
@@ -133,6 +139,17 @@ Template.recurringBlock.events({
 		});
 		var start = $('select[name="conflictStart-'+index+'"]').val();
 		var end = $('select[name="conflictEnd-'+index+'"]').val();
+
+		// Process these - End must be later than Start
+		var endSplit = end.split(":");
+		var startSplit = start.split(":");
+		if(endSplit[0] < startSplit[0]) {
+			end = (startSplit[1] == 30) ? (startSplit[0] + 1) + ":00" : startSplit[0] + ":30";
+		} else if(endSplit[0] == startSplit[0] && startSplit[1] == 30) {
+			end = (startSplit[0] + 1) + ":00";
+		}
+
+		// Save
 		var conflicts = Session.get("otherConflicts");
 		conflicts[index] = {days: days, start: start, end: end};
 		Session.set("otherConflicts", conflicts);
@@ -145,6 +162,17 @@ Template.recurringBlock.events({
 		});
 		var start = $('select[name="prefStart-'+index+'"]').val();
 		var end = $('select[name="prefEnd-'+index+'"]').val();
+
+		// Process these - End must be later than Start
+		var endSplit = end.split(":");
+		var startSplit = start.split(":");
+		if(endSplit[0] < startSplit[0]) {
+			end = (startSplit[1] == 30) ? (startSplit[0] + 1) + ":00" : startSplit[0] + ":30";
+		} else if(endSplit[0] == startSplit[0] && startSplit[1] == 30) {
+			end = (startSplit[0] + 1) + ":00";
+		}
+
+		// Save
 		var prefs = Session.get("preferences");
 		prefs[index] = {days: days, start: start, end: end};
 		Session.set("preferences", prefs);
