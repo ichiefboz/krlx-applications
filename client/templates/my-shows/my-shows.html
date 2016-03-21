@@ -10,7 +10,7 @@
 					<tr>
 						<th>Show Name</th>
 						<th>DJs</th>
-						<th>Submitted</th>
+						<th>Status</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -19,11 +19,18 @@
 						<tr>
 							<td>{{title}}</td>
 							<td>
-								{{#each dj in djs}}
-									<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>
-								{{/each}}
+								<div class="hide-tablet">
+									{{#each dj in djs}}
+										<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>
+									{{/each}}
+								</div>
+								<div class="only-tablet">
+									<ul>
+										{{#each dj in djs}}<li>{{displayName dj}}</li>{{/each}}
+									</ul>
+								</div>
 							</td>
-							<td>Incomplete</td>
+							<td>{{showStatus}}</td>
 							<td>
 								<a href="{{pathFor route='shows.application'}}" class="ui primary circular icon button"><i class="edit icon"></i></a>
 								{{#if isOwner}}

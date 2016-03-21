@@ -11,6 +11,9 @@ Template.myShows.helpers({
 	displayName: function(netid) {
 		var dj = DJs.findOne({netid: netid});
 		return (dj.name == null) ? netid : dj.name;
+	},
+	showStatus: function() {
+		return (this.completed) ? "Submitted (priority " + this.priority + ")" : "Incomplete";
 	}
 })
 
