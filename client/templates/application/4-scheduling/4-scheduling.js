@@ -124,6 +124,7 @@ Template.step4.events({
 })
 
 Template.recurringBlock.events({
+	// @todo dry this out
 	"change input[name*='conflict'], select[name*='conflict']": function(event) {
 		var index = event.currentTarget.dataset.index;
 		var days = [];
