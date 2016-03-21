@@ -98,6 +98,7 @@ Template.recurringBlock.rendered = function() {
 }
 
 Template.step4.rendered = function() {
+	$(".ui.checkbox").checkbox();
 	$("#explainSafeHarbor").popup();
 }
 
