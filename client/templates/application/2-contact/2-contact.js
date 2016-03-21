@@ -44,25 +44,31 @@ Template.step2.rendered = function() {
 Template.step2.events({
 	"submit .ui.form": function(event) {
 		event.preventDefault();
+		var form = event.currentTarget;
 		if($(".ui.form").form("is valid")) {
 			for(var i = 0; i < this.djs.length; i++) {
 				var data = {
-					name: this.djs[i].name,
-					year: this.djs[i].year,
-					terms: this.djs[i].terms,
-					phone: this.djs[i].phone,
-					campusPHone: this.djs[i].campusPhone
-				}
-				Meteor.call("updateDJ", this.djs[i].netid, data);
+					name: form["name-" + this.djs[i]].value,
+					year: form["year-" + this.djs[i]].value,
+					terms: form["terms-" + this.djs[i]].value,
+					phone: form["phone-" + this.djs[i]].value,
+					campusPhone: form["campusPhone-" + this.djs[i]].value
+				};
+				Meteor.call("updateDJ", this.djs[i], data);
 			}
-			if(this.step == 2) {
-				Meteor.call("incrementStep", this._id, function(error, result) {
+			if(this.step <= 2) {
+				Meteor.call("incrementStep", this._id, 3, function(error, result) {
 					if(result) {
 						Router.go("shows.application", {_id: result, step: 3});
 					}
 				});
+			} else {
+				Router.go("shows.application", {_id: this._id, step: 3})
 			}
 		}
+	},
+	"click #goBackButton": function() {
+		Router.go("shows.application", {_id: this._id, step: 1});
 	}
 })
 
