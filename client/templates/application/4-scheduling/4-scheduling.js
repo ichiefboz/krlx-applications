@@ -11,6 +11,19 @@ Template.step4.created = function() {
 }
 
 Template.step4.helpers({
+	sundays: [
+		{item: 2, display: "2nd Sunday (April 10)"},
+		{item: 3, display: "3rd Sunday (April 17)"},
+		{item: 4, display: "4th Sunday (April 24)"},
+		{item: 5, display: "5th Sunday (May 1) - Midterm Break"},
+		{item: 6, display: "6th Sunday (May 8)"},
+		{item: 7, display: "7th Sunday (May 15)"},
+		{item: 8, display: "8th Sunday (May 22)"},
+		{item: 9, display: "9th Sunday (May 29) - Memorial Day weekend"},
+	],
+	sundayChecked: function(value) {
+		return (this.badSundays) ? (conflicts.indexOf(value) >= 0) : false;
+	},
 	classList: [
 		{title: '"A" classes (M/W/F)', options: ["1a", "2a", "3a", "4a", "5a", "6a"]},
 		{title: '"C" classes (Tu/Th)', options: ["1-2c", "2-3c", "4-5c", "5-6c"]},
@@ -19,6 +32,9 @@ Template.step4.helpers({
 	classListChecked: function(value) {
 		var conflicts = Session.get("classConflicts");
 		return (conflicts.indexOf(value) >= 0);
+	},
+	bandemonium: function() {
+		return this.type == "Bandemonium";
 	},
 	otherConflicts: function() {
 		return Session.get("otherConflicts");

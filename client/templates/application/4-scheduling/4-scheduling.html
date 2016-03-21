@@ -2,72 +2,87 @@
 	<div class="column">
 		<h1>Scheduling</h1>
 		<form class="ui form">
-			<div class="ui segment" style="padding-bottom: 0px">
-				<h3>Basics</h3>
-				<div class="two fields">
-					<div class="grouped fields">
-						<label>Preferred Length</label>
-						{{#each lengthOptions}}
-						<div class="field">
-							<div class="ui radio checkbox">
-								<input type="radio" tabindex="0" class="hidden" name="preferred-length" value="{{item}}" checked="{{preferredLengthChecked item}}">
-								<label>{{display}}</label>
-							</div>
+			{{#unless bandemonium}}
+				<h3>Select Days Off Campus</h3>
+				<p>Bandemonium is Sundays, 5-7pm. If you already know of some Sundays when you will be off campus, please check those off here.</p>
+				<div class="grouped fields">
+					{{#each sundays}}
+					<div class="field">
+						<div class="ui checkbox">
+							<input type="checkbox" tabindex="0" class="hidden" name="bandemonium-sunday" value="{{item}}" checked="{{sundayChecked item}}">
+							<label>{{display}}</label>
 						</div>
-						{{/each}}
-					</div>
-					<div class="grouped fields">
-						<label>Request safe harbor hours? <a id="explainSafeHarbor" data-title="What are safe harbor hours?" data-content='The safe harbor refers to the overnight hours between 10:00 PM and 5:59 AM. Explicit music can only be played in the safe harbor. Some countries call these hours "watershed hours".' data-variation="wide inverted">(Huh?)</a></label>
-						{{#each safeHarborOptions}}
-						<div class="field">
-							<div class="ui radio checkbox">
-								<input type="radio" tabindex="0" class="hidden" name="request-safe-harbor" value="{{item}}" checked="{{safeHarborChecked item}}">
-								<label>{{display}}</label>
-							</div>
-						</div>
-						{{/each}}
-					</div>
-				</div>
-			</div>
-			<div class="ui segment" style="padding-bottom: 0px">
-				<h3>Classes</h3>
-				<p>Check the boxes that correspond to your class schedule.</p>
-				<div class="three fields">
-					{{#each classList}}
-					<div class="grouped fields">
-						<label>{{title}}</label>
-						{{#each item in options}}
-						<div class="inline field">
-					    <div class="ui checkbox">
-					      <input type="checkbox" tabindex="0" class="hidden" name="conflict-class" value="{{item}}" checked="{{classListChecked item}}">
-					      <label>{{item}}</label>
-					    </div>
-					  </div>
-						{{/each}}
 					</div>
 					{{/each}}
 				</div>
-			</div>
-			<div class="ui segment">
-				<h3>Other Conflicts</h3>
-				<p>Please enter your other recurring conflicts here, such as work study, labs, art classes, or sports.</p>
-				<p><button class="ui primary button addRecurringBlob" data-mode="otherConflicts" type="button">Add conflict</button>
-					<button class="ui button removeRecurringBlob" data-mode="otherConflicts" type="button">Remove conflict</button></p>
-				{{#each conflict in otherConflicts}}
-					{{setIndex conflict "conflict" @index}}
-					{{> recurringBlock conflict}}
-				{{/each}}
-			</div>
-			<div class="ui segment">
-				<h3>Preferences</h3>
-				<p>Please enter your preferences here, order doesn't matter.</p>
-				<p><button class="ui primary button addRecurringBlob" data-mode="preferences" type="button">Add preference</button>
-					<button class="ui button removeRecurringBlob" data-mode="preferences" type="button">Remove preference</button></p>
-				{{#each preference in preferences}}
-					{{setIndex preference "pref" @index}}
-					{{> recurringBlock preference}}
-				{{/each}}
-			</div>
+			{{else}}
+				<div class="ui segment" style="padding-bottom: 0px">
+					<h3>Basics</h3>
+					<div class="two fields">
+						<div class="grouped fields">
+							<label>Preferred Length</label>
+							{{#each lengthOptions}}
+							<div class="field">
+								<div class="ui radio checkbox">
+									<input type="radio" tabindex="0" class="hidden" name="preferred-length" value="{{item}}" checked="{{preferredLengthChecked item}}">
+									<label>{{display}}</label>
+								</div>
+							</div>
+							{{/each}}
+						</div>
+						<div class="grouped fields">
+							<label>Request safe harbor hours? <a id="explainSafeHarbor" data-title="What are safe harbor hours?" data-content='The safe harbor refers to the overnight hours between 10:00 PM and 5:59 AM. Explicit music can only be played in the safe harbor. Some countries call these hours "watershed hours".' data-variation="wide inverted">(Huh?)</a></label>
+							{{#each safeHarborOptions}}
+							<div class="field">
+								<div class="ui radio checkbox">
+									<input type="radio" tabindex="0" class="hidden" name="request-safe-harbor" value="{{item}}" checked="{{safeHarborChecked item}}">
+									<label>{{display}}</label>
+								</div>
+							</div>
+							{{/each}}
+						</div>
+					</div>
+				</div>
+				<div class="ui segment" style="padding-bottom: 0px">
+					<h3>Classes</h3>
+					<p>Check the boxes that correspond to your class schedule.</p>
+					<div class="three fields">
+						{{#each classList}}
+						<div class="grouped fields">
+							<label>{{title}}</label>
+							{{#each item in options}}
+							<div class="inline field">
+						    <div class="ui checkbox">
+						      <input type="checkbox" tabindex="0" class="hidden" name="conflict-class" value="{{item}}" checked="{{classListChecked item}}">
+						      <label>{{item}}</label>
+						    </div>
+						  </div>
+							{{/each}}
+						</div>
+						{{/each}}
+					</div>
+				</div>
+				<div class="ui segment">
+					<h3>Other Conflicts</h3>
+					<p>Please enter your other recurring conflicts here, such as work study, labs, art classes, or sports.</p>
+					<p><button class="ui primary button addRecurringBlob" data-mode="otherConflicts" type="button">Add conflict</button>
+						<button class="ui button removeRecurringBlob" data-mode="otherConflicts" type="button">Remove conflict</button></p>
+					{{#each conflict in otherConflicts}}
+						{{setIndex conflict "conflict" @index}}
+						{{> recurringBlock conflict}}
+					{{/each}}
+				</div>
+				<div class="ui segment">
+					<h3>Preferences</h3>
+					<p>Please enter your preferences here, order doesn't matter.</p>
+					<p><button class="ui primary button addRecurringBlob" data-mode="preferences" type="button">Add preference</button>
+						<button class="ui button removeRecurringBlob" data-mode="preferences" type="button">Remove preference</button></p>
+					{{#each preference in preferences}}
+						{{setIndex preference "pref" @index}}
+						{{> recurringBlock preference}}
+					{{/each}}
+				</div>
+			{{/unless}}
 			<div class="field" style="margin-bottom: 1em">
 				<button class="ui basic button" id="goBackButton" type="button">Go back</button>
 				<button class="ui green button" id="continueButton" type="submit">Continue</button>
