@@ -1,0 +1,26 @@
+<template name="step4">
+	<div class="column">
+		<h1>Scheduling</h1>
+		<form class="ui form">
+			<div class="ui segment">
+				<h3>Classes</h3>
+				<p>Check the boxes that correspond to your class schedule.</p>
+				<div class="three fields">
+					{{#each classList}}
+					<div class="grouped fields">
+						<label>{{title}}</label>
+						{{#each item in options}}
+						<div class="inline field">
+					    <div class="ui checkbox">
+					      <input type="checkbox" tabindex="0" class="hidden" name="conflict-class" value="{{item}}">
+					      <label>{{item}}</label>
+					    </div>
+					  </div>
+						{{/each}}
+					</div>
+					{{/each}}
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
