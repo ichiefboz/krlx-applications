@@ -24,9 +24,9 @@
 			<div class="ui segment">
 				<h3>Other Conflicts</h3>
 				<p>Please enter your other recurring conflicts here, such as work study, labs, art classes, or sports.</p>
-				<p><button class="ui primary button" id="addConflict">Add conflict</button>
-					<button class="ui button" id="addCommon">Add common conflict</button>
-					<button class="ui button" id="removeConflict">Remove conflict</button></p>
+				<p><button class="ui primary button" id="addConflict" type="button">Add conflict</button>
+					<button class="ui button" id="addCommon" type="button">Add lab or art class</button>
+					<button class="ui button" id="removeConflict" type="button">Remove conflict</button></p>
 				{{#each conflict in otherConflicts}}
 					{{setIndex conflict @index}}
 					{{> recurringBlock conflict}}
@@ -35,8 +35,8 @@
 			<div class="ui segment">
 				<h3>Preferences</h3>
 				<p>Please enter your preferences here, order doesn't matter.</p>
-				<p><button class="ui primary button" id="addPref">Add preference</button>
-					<button class="ui button" id="removePref">Remove preference</button></p>
+				<p><button class="ui primary button" id="addPref" type="button">Add preference</button>
+					<button class="ui button" id="removePref" type="button">Remove preference</button></p>
 				{{#each preference in preferences}}
 					{{setIndex preference @index}}
 					{{> recurringBlock preference}}
@@ -47,6 +47,60 @@
 				<button class="ui green button" id="continueButton" type="submit">Continue</button>
 			</div>
 		</form>
+		<div class="ui modal" id="commonConflictModal">
+			<div class="header">Add Lab or Art</div>
+			<div class="content">
+				<h4 class="ui horizontal divider header">
+				  <i class="lab icon"></i>
+				  Labs
+				</h4>
+				<p>Common lab times are 8 AM to noon, and 1 PM to 5 PM.</p>
+				<table class="ui table">
+					<thead>
+						<tr>
+							<th class="four wide">Day</th>
+							<th class="six wide">Morning lab (8 AM - noon)</th>
+							<th class="six wide">Afternoon lab (1 PM - 5 PM)</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each labDays}}
+							<tr>
+								<td>{{day}}</td>
+								<td><button class="ui dismissCommons button" data-day="{{abbr}}" data-start="8:00" data-end="12:00">{{day}} morning lab</button></td>
+								<td><button class="ui dismissCommons button" data-day="{{abbr}}" data-start="13:00" data-end="17:00">{{day}} afternoon lab</button></td>
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+				<h4 class="ui horizontal divider header">
+				  <i class="paint brush icon"></i>
+				  Art classes
+				</h4>
+				<table class="ui table">
+					<thead>
+						<tr>
+							<th class="four wide">Day</th>
+							<th class="six wide">Morning art class</th>
+							<th class="six wide">Afternoon art class</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each artConflicts}}
+							<tr>
+								<td>{{displayAs}}</td>
+								{{#each options}}
+									<td><button class="ui dismissCommons button" data-days="{{days}}" data-start="{{start}}" data-end="{{end}}">{{title}}</button></td>
+								{{/each}}
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+			<div class="actions">
+				<div class="ui cancel button">Never mind</div>
+			</div>
+		</div>
 	</div>
 </template>
 

@@ -25,7 +25,24 @@ Template.step4.helpers({
 	},
 	setIndex: function(conflict, index) {
 		conflict.conflictIndex = index;
-	}
+	},
+	labDays: [
+		{day: "Monday", abbr: "mon"},
+		{day: "Tuesday", abbr: "tue"},
+		{day: "Wednesday", abbr: "wed"},
+		{day: "Thursday", abbr: "thu"},
+		{day: "Friday", abbr: "fri"}
+	],
+	artConflicts: [
+		{displayAs: "Monday/Wednesday", options: [
+			{days: "mon wed", start: "8:30", end: "11:00", title: "M/W morning art (8:30 - 11 AM)"},
+			{days: "mon wed", start: "12:30", end: "15:00", title: "M/W afternoon art (12:30 - 3 PM)"}
+		]},
+		{displayAs: "Tuesday/Thursday", options: [
+			{days: "tue thu", start: "9:15", end: "11:45", title: "Tu/Th morning art (9:15 - 11:45 AM)"},
+			{days: "tue thu", start: "13:15", end: "15:45", title: "Tu/Th afternoon art (1:15 - 3:45 PM)"}
+		]}
+	]
 })
 
 Template.recurringBlock.helpers({
@@ -60,9 +77,6 @@ Template.recurringBlock.helpers({
 	},
 	isChecked: function(value, list) {
 		return (list.indexOf(value) >= 0) ? "checked" : "";
-	},
-	print: function() {
-		console.log(this);
 	}
 })
 
@@ -70,3 +84,9 @@ Template.step4.rendered = function() {
 	$(".ui.checkbox").checkbox();
 	$("select.dropdown").dropdown();
 }
+
+Template.step4.events({
+	"click #addCommon": function() {
+		$("#commonConflictModal").modal("show");
+	}
+})
