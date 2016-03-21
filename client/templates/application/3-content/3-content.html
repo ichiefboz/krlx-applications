@@ -2,9 +2,37 @@
 	<div class="column">
 		<h1>Show Content</h1>
 		<form class="ui form">
+			<div class="ui error message"></div>
+			{{#if bandemonium}}
+				<div class="field">
+					<label>Artist or Theme</label>
+					<input type="text" name="theme" placeholder="Music involving the harpsichord" value="{{theme}}">
+				</div>
+			{{else}}
+				<div class="field">
+					<label>Show Title</label>
+					<input type="text" name="title" placeholder="The Best Show" value="{{title}}">
+				</div>
+				{{#if org}}
+					<div class="field">
+						<label>Student Organization Name</label>
+						<input type="text" name="sponsor" placeholder="KRLX" value="{{sponsor}}">
+					</div>
+				{{/if}}
+			{{/if}}
 			<div class="field">
-				<label>Show Title</label>
-				<input type="text" name="title" placeholder="The Best Show" value="{{title}}">
+				<label>{{#if bandemonium}}Website Description{{else}}Show Genre{{/if}}</label>
+				<textarea rows="2" name="description">{{description}}</textarea>
+			</div>
+			{{#if bandemonium}}
+				<div class="field">
+					<label>Why should we pick you?</label>
+					<textarea rows="4" name="why">{{why}}</textarea>
+				</div>
+			{{/if}}
+			<div class="field">
+				<button class="ui basic button" id="goBackButton" type="button">Go back</button>
+				<button class="ui green button" id="continueButton" type="submit">Continue</button>
 			</div>
 		</form>
 	</div>
