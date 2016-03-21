@@ -1,18 +1,23 @@
 <template name="layout">
-	<div class="ui stackable grid" style="margin-left: 0; margin-right: 0">
-		<div class="three wide computer tablet only column">
-			<div class="ui fixed left vertical inverted menu" style="min-height: 100%; width: inherit">
-				{{> sidebar}}
+	<div class="ui inverted vertical sidebar menu">
+		{{> sidebar}}
+	</div>
+	<div class="pusher">
+		<div class="ui stackable grid" style="margin-left: 0; margin-right: 0;">
+			<div class="three wide computer tablet only column">
+				<div class="ui fixed left vertical inverted menu" style="min-height: 100%; width: inherit">
+					{{> sidebar}}
+				</div>
 			</div>
-		</div>
-		<div class="thirteen wide column">
-			<div class="ui secondary menu">
-				<a class="toc item">
-					<i class="sidebar icon"></i>
-				</a>
-			</div>
-			<div class="ui main grid container">
-				{{> yield}}
+			<div class="thirteen wide column">
+				<div class="ui secondary menu">
+					<a class="toc item">
+						<i class="sidebar icon"></i>
+					</a>
+				</div>
+				<div class="ui main grid container">
+					{{> yield}}
+				</div>
 			</div>
 		</div>
 	</div>
