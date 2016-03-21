@@ -11,29 +11,29 @@ Template.step2.rendered = function() {
 	var currentYear = (new Date).getFullYear();
 	for(var i = 0; i < djList.length; i++) {
 		var username = djList[i];
-		fieldRules[username+"-name"] = {rules: [{
+		fieldRules["name-" + username] = {rules: [{
 			type: "empty",
 			prompt: "Please enter " + username + "'s full name."
 		}, {
 			type: "contains[ ]",
 			prompt: "Make sure you've entered " + username + "'s full name, including their last."
 		}]};
-		fieldRules[username+"-year"] = {rules: [{
+		fieldRules["year-" + username] = {rules: [{
 			type: "integer["+currentYear+".."+(currentYear+4)+"]",
 			prompt: "Please choose a valid class year for " +username+ "."
 		}]};
-		fieldRules[username+"-phone"] = {rules: [{
+		fieldRules["phone-" + username] = {rules: [{
 			type: "empty",
 			prompt: "Your cell phone number is required, even if you have requested a directory suppress. Please enter " + username + "'s phone number."
 		}, {
 			type: "regExp[/^(\()?([2-9][0-9]{2})(\))?[-. ]?([2-9](?!11)[0-9]{2})[-. ]?([0-9]{4})$/]",
 			prompt: username + "'s phone number is invalid. Please enter a valid phone number. Note that international numbers may not be used."
 		}]};
-		fieldRules[username+"-campusPhone"] = {rules: [{
+		fieldRules["campusPhone-" + username] = {rules: [{
 			type: "regExp[/^$|^[2-8][0-9]{3}$/]",
 			prompt: username + "'s campus phone number is invalid. Please enter the last four digits only."
 		}]};
-		fieldRules[username+"-terms"] = {rules: [{
+		fieldRules["terms-" + username] = {rules: [{
 			type: "integer[0..13]",
 			prompt: "Please choose the terms of experience for " + username + ". Remember to choose 0 if " + username + " is completely new to KRLX."
 		}]};
