@@ -26,8 +26,9 @@ Template.step4.helpers({
 	preferences: function() {
 		return Session.get("preferences");
 	},
-	setIndex: function(conflict, index) {
+	setIndex: function(conflict, mode, index) {
 		conflict.conflictIndex = index;
+		conflict.mode = mode;
 	},
 	lengthOptions: [
 		{item: 30, display: "30 minutes (½ hour)"},
@@ -117,18 +118,13 @@ Template.step4.events({
 	"click .removeRecurringBlob": function(event) {
 		var sessionBlob = event.currentTarget.dataset.mode;
 		var blobs = Session.get(sessionBlob);
-		if(blobs.length > 0) {
-			var lastBlob = blobs[blobs.length - 1];
-			if(!(lastBlob.days.length == 0 || lastBlob.start == null || lastBlob.end == null)) {
-				blobs.splice(blobs.length - 1, 1);
-			}
-		}
+		blobs.splice(-1, 1);
 		Session.set(sessionBlob, blobs);
 	}
 })
 
 Template.recurringBlock.events({
-	"change input, select": function(event) {
+	"change input[name*='conflict'], select[name*='conflict']": function(event) {
 		var index = event.currentTarget.dataset.index;
 		var days = [];
 		$('input[name="conflictDays-'+index+'"]:checked').each(function() {
@@ -139,5 +135,17 @@ Template.recurringBlock.events({
 		var conflicts = Session.get("otherConflicts");
 		conflicts[index] = {days: days, start: start, end: end};
 		Session.set("otherConflicts", conflicts);
+	},
+	"change input[name*='pref'], select[name*='pref']": function(event) {
+		var index = event.currentTarget.dataset.index;
+		var days = [];
+		$('input[name="prefDays-'+index+'"]:checked').each(function() {
+			days.push($(this).val());
+		});
+		var start = $('select[name="prefStart-'+index+'"]').val();
+		var end = $('select[name="prefEnd-'+index+'"]').val();
+		var prefs = Session.get("preferences");
+		prefs[index] = {days: days, start: start, end: end};
+		Session.set("preferences", prefs);
 	}
 })

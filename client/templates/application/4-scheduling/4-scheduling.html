@@ -54,7 +54,7 @@
 				<p><button class="ui primary button addRecurringBlob" data-mode="otherConflicts" type="button">Add conflict</button>
 					<button class="ui button removeRecurringBlob" data-mode="otherConflicts" type="button">Remove conflict</button></p>
 				{{#each conflict in otherConflicts}}
-					{{setIndex conflict @index}}
+					{{setIndex conflict "conflict" @index}}
 					{{> recurringBlock conflict}}
 				{{/each}}
 			</div>
@@ -64,7 +64,7 @@
 				<p><button class="ui primary button addRecurringBlob" data-mode="preferences" type="button">Add preference</button>
 					<button class="ui button removeRecurringBlob" data-mode="preferences" type="button">Remove preference</button></p>
 				{{#each preference in preferences}}
-					{{setIndex preference @index}}
+					{{setIndex preference "pref" @index}}
 					{{> recurringBlock preference}}
 				{{/each}}
 			</div>
@@ -82,11 +82,11 @@
 			<div class="four wide field">
 				<div class="grouped fields">
 					<label>Days</label>
-					{{#let itemIndex=conflictIndex daysChecked=days}}
+					{{#let itemIndex=conflictIndex daysChecked=days inputMode=mode}}
 						{{#each weekdays}}
 						<div class="field">
 							<div class="ui checkbox">
-								<input type="checkbox" name="conflictDays-{{itemIndex}}" data-index="{{itemIndex}}" tabindex="0" class="hidden" value="{{abbr}}" {{isChecked abbr daysChecked}}>
+								<input type="checkbox" name="{{inputMode}}Days-{{itemIndex}}" data-index="{{itemIndex}}" tabindex="0" class="hidden {{inputMode}}Input" value="{{abbr}}" {{isChecked abbr daysChecked}}>
 								<label>{{day}}</label>
 							</div>
 						</div>
@@ -97,7 +97,7 @@
 			<div class="twelve wide field">
 				<div class="field" style="margin-bottom: 1em">
 					<label>Start time</label>
-					<select class="dropdown" data-index="{{conflictIndex}}" name="conflictStart-{{conflictIndex}}">
+					<select class="dropdown {{mode}}Input" data-index="{{conflictIndex}}" name="{{mode}}Start-{{conflictIndex}}">
 						<option value="">Start time</option>
 						{{#let startTime=start}}
 							{{#each times "start"}}
@@ -108,7 +108,7 @@
 				</div>
 				<div class="field">
 					<label>End time</label>
-					<select class="dropdown" data-index="{{conflictIndex}}" name="conflictEnd-{{conflictIndex}}">
+					<select class="dropdown {{mode}}Input" data-index="{{conflictIndex}}" name="{{mode}}End-{{conflictIndex}}">
 						<option value="">End time</option>
 						{{#let endTime=end}}
 							{{#each times "end"}}
