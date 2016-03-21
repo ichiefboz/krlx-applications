@@ -18,7 +18,11 @@
 					{{#each currentApplications}}
 						<tr>
 							<td>{{title}}</td>
-							<td></td>
+							<td>
+								{{#each dj in djs}}
+									<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>
+								{{/each}}
+							</td>
 							<td>Incomplete</td>
 							<td>
 								<a href="{{pathFor route='shows.application'}}" class="ui primary circular icon button"><i class="edit icon"></i></a>

@@ -25,3 +25,10 @@ Meteor.publish("djsInShow", function(showID) {
 		"terms": 1
 	}});
 });
+
+Meteor.publish("djBasicDetails", function() {
+	return DJs.find({}, {fields: {
+		"netid": 1,
+		"name": 1
+	}})
+})

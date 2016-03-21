@@ -7,6 +7,10 @@ Template.myShows.helpers({
 	},
 	isOwner: function() {
 		return (this.owner == Meteor.user().krlx.netid);
+	},
+	displayName: function(netid) {
+		var dj = DJs.findOne({netid: netid});
+		return (dj.name == null) ? netid : dj.name;
 	}
 })
 
