@@ -101,5 +101,17 @@ Template.step4.rendered = function() {
 }
 
 Template.step4.events({
+	"click .addRecurringBlob": function(event) {
+		var sessionBlob = event.currentTarget.dataset.mode;
+		var blobs = Session.get(sessionBlob);
+		if(blobs.length == 0) {
+			blobs.push({days: [], start: "12:00", end: "13:00"});
+		} else {
+			var lastBlob = blobs[blobs.length - 1];
+			if(!(lastBlob.days.length == 0 || lastBlob.start == null || lastBlob.end == null)) {
+				blobs.push({days: [], start: "12:00", end: "13:00"});
+			}
+		}
+		Session.set(sessionBlob, blobs);
 	}
 })
