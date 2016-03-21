@@ -3,7 +3,6 @@
 		{{#unless ignoreHeaders}}
 			<h1 class="ui header">My Shows</h1>
 		{{/unless}}
-		<h3 class="ui header">Current Shows</h3>
 		<h3 class="ui header">Current Applications</h3>
 		{{#if hasApplications}}
 			<table class="ui yellow table">
@@ -34,8 +33,6 @@
 		{{else}}
 			<p>Looks like you don't have any active applications at the moment.</p>
 		{{/if}}
-		<h3 class="ui header">Previous Shows</h3>
-		<p>You don't have any previous shows listed in the system. (This will only list shows from Fall 2015 onwards; IT engineers are currently transferring older show data.)</p>
 		<div class="ui modal" id="delete-show-modal">
 			<div class="header">Confirm Deletion<span style="display:none;" id="delete-show-id">asdfasdfasdf</span></div>
 			<div class="content">
