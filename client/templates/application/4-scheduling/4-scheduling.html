@@ -52,7 +52,7 @@
 				<h3>Other Conflicts</h3>
 				<p>Please enter your other recurring conflicts here, such as work study, labs, art classes, or sports.</p>
 				<p><button class="ui primary button addRecurringBlob" data-mode="otherConflicts" type="button">Add conflict</button>
-					<button class="ui button" id="removeConflict" type="button">Remove conflict</button></p>
+					<button class="ui button removeRecurringBlob" data-mode="otherConflicts" type="button">Remove conflict</button></p>
 				{{#each conflict in otherConflicts}}
 					{{setIndex conflict @index}}
 					{{> recurringBlock conflict}}
@@ -62,7 +62,7 @@
 				<h3>Preferences</h3>
 				<p>Please enter your preferences here, order doesn't matter.</p>
 				<p><button class="ui primary button addRecurringBlob" data-mode="preferences" type="button">Add preference</button>
-					<button class="ui button" id="removePref" type="button">Remove preference</button></p>
+					<button class="ui button removeRecurringBlob" data-mode="preferences" type="button">Remove preference</button></p>
 				{{#each preference in preferences}}
 					{{setIndex preference @index}}
 					{{> recurringBlock preference}}
@@ -82,11 +82,11 @@
 			<div class="four wide field">
 				<div class="grouped fields">
 					<label>Days</label>
-					{{#let conflictIndex=itemIndex daysChecked=days}}
+					{{#let itemIndex=conflictIndex daysChecked=days}}
 						{{#each weekdays}}
 						<div class="field">
 							<div class="ui checkbox">
-								<input type="checkbox" name="conflictDays-{{conflictIndex}}" tabindex="0" class="hidden" value="{{abbr}}" {{isChecked abbr daysChecked}}>
+								<input type="checkbox" name="conflictDays-{{itemIndex}}" data-index="{{itemIndex}}" tabindex="0" class="hidden" value="{{abbr}}" {{isChecked abbr daysChecked}}>
 								<label>{{day}}</label>
 							</div>
 						</div>
@@ -97,7 +97,7 @@
 			<div class="twelve wide field">
 				<div class="field" style="margin-bottom: 1em">
 					<label>Start time</label>
-					<select class="dropdown" name="conflictEnd-{{itemIndex}}">
+					<select class="dropdown" data-index="{{conflictIndex}}" name="conflictStart-{{conflictIndex}}">
 						<option value="">Start time</option>
 						{{#let startTime=start}}
 							{{#each times "start"}}
@@ -108,7 +108,7 @@
 				</div>
 				<div class="field">
 					<label>End time</label>
-					<select class="dropdown" name="conflictEnd-{{itemIndex}}">
+					<select class="dropdown" data-index="{{conflictIndex}}" name="conflictEnd-{{conflictIndex}}">
 						<option value="">End time</option>
 						{{#let endTime=end}}
 							{{#each times "end"}}

@@ -92,11 +92,11 @@ Template.recurringBlock.helpers({
 })
 
 Template.recurringBlock.rendered = function() {
+	$(".ui.checkbox").checkbox();
 	$("select.dropdown").dropdown();
 }
 
 Template.step4.rendered = function() {
-	$(".ui.checkbox").checkbox();
 	$("#explainSafeHarbor").popup();
 }
 
@@ -113,5 +113,31 @@ Template.step4.events({
 			}
 		}
 		Session.set(sessionBlob, blobs);
+	},
+	"click .removeRecurringBlob": function(event) {
+		var sessionBlob = event.currentTarget.dataset.mode;
+		var blobs = Session.get(sessionBlob);
+		if(blobs.length > 0) {
+			var lastBlob = blobs[blobs.length - 1];
+			if(!(lastBlob.days.length == 0 || lastBlob.start == null || lastBlob.end == null)) {
+				blobs.splice(blobs.length - 1, 1);
+			}
+		}
+		Session.set(sessionBlob, blobs);
+	}
+})
+
+Template.recurringBlock.events({
+	"change input, select": function(event) {
+		var index = event.currentTarget.dataset.index;
+		var days = [];
+		$('input[name="conflictDays-'+index+'"]:checked').each(function() {
+			days.push($(this).val());
+		});
+		var start = $('select[name="conflictStart-'+index+'"]').val();
+		var end = $('select[name="conflictEnd-'+index+'"]').val();
+		var conflicts = Session.get("otherConflicts");
+		conflicts[index] = {days: days, start: start, end: end};
+		Session.set("otherConflicts", conflicts);
 	}
 })
