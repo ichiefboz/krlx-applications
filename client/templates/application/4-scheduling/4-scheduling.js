@@ -2,10 +2,14 @@ Template.step4.created = function() {
 	if(this.data.conflicts) {
 		Session.set("classConflicts", this.data.conflicts.classes);
 		Session.set("otherConflicts", this.data.conflicts.other);
-		Session.set("preferences", this.data.preferences);
 	} else {
 		Session.set("classConflicts", []);
 		Session.set("otherConflicts", []);
+	}
+
+	if(this.data.preferences) {
+		Session.set("preferences", this.data.preferences);
+	} else {
 		Session.set("preferences", []);
 	}
 }
@@ -166,6 +170,7 @@ Template.step4.events({
 				classes: classConflicts,
 				other: Session.get("otherConflicts")
 			};
+			updateData.preferences = Session.get("preferences");
 			updateData.safeHarbor = $("[name='requestSafeHarbor']:checked").val();
 			updateData.preferredLength = parseInt($("[name='preferredLength']:checked").val());
 		}
