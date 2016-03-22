@@ -196,9 +196,9 @@ Template.recurringBlock.events({
 		// Process these - End must be later than Start
 		var endSplit = end.split(":");
 		var startSplit = start.split(":");
-		if(endSplit[0] < startSplit[0]) {
+		if(endSplit[0] > startSplit[0]) {
 			end = (startSplit[1] == 30) ? (parseInt(startSplit[0]) + 1) + ":00" : startSplit[0] + ":30";
-		} else if(endSplit[0] == startSplit[0] && startSplit[1] == 30) {
+		} else if (endSplit[0] == startSplit[0] && startSplit[1] == 30) {
 			end = (parseInt(startSplit[0]) + 1) + ":00";
 		}
 
