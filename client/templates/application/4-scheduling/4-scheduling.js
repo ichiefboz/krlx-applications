@@ -110,6 +110,15 @@ Template.recurringBlock.helpers({
 
 Template.recurringBlock.rendered = function() {
 	$(".ui.checkbox").checkbox();
+	$("select.dropdown").dropdown({onChange: function(value) {
+		var mode = $(this).data("mode");
+		var field = $(this).data("field");
+		var index = $(this).data("index").toString();
+		var fieldName = mode+""+index+"-"+field.toString();
+		$("input[name='"+fieldName+"']").val(value);
+		$("input[name='"+fieldName+"']").trigger("change");
+		$("select.dropdown").dropdown("refresh");
+	}});
 	$("select.dropdown").dropdown();
 }
 
@@ -140,6 +149,35 @@ Template.step4.events({
 	},
 	"submit .ui.form": function(event) {
 		event.preventDefault();
+		var form = event.currentTarget;
+		var updateData = {};
+		if(this.type == "Bandemonium") {
+			var sundays = [];
+			$('input[name="bandemonium-sunday"]:checked').each(function() {
+				var value = parseInt($(this).val());
+		   sundays.push(value);
+			});
+			updateData.badSundays = sundays;
+		} else {
+			var classConflicts = [];
+			$('input[name="conflict-class"]:checked').each(function() {
+				classConflicts.push($(this).val());
+			});
+			updateData.conflicts = {
+				classes: classConflicts,
+				other: Session.get("otherConflicts")
+			};
+			updateData.safeHarbor = form["request-safe-harbor"].value;
+			updateData.preferredLength = form["preferred-length"].value;
+		}
+		Meteor.call("updateShow", this._id, updateData);
+		if(this.step <= 4) {
+			Meteor.call("incrementStep", this._id, 5, function(error, result) {
+				Router.go("shows.application", {_id: result, step: 5});
+			});
+		} else {
+			Router.go("shows.application", {_id: this._id, step: 5});
+		}
 	},
 	"click #goBackButton": function() {
 		Router.go("shows.application", {_id: this._id, step: 3});
@@ -148,22 +186,21 @@ Template.step4.events({
 
 Template.recurringBlock.events({
 	// @todo dry this out
-	"change input[name*='conflict'], select[name*='conflict']": function(event) {
+	"change input[name*='conflict']": function(event) {
 		var index = event.currentTarget.dataset.index;
 		var days = [];
 		$('input[name="conflictDays-'+index+'"]:checked').each(function() {
 			days.push($(this).val());
 		});
-		var start = $('select[name="conflictStart-'+index+'"]').val();
-		var end = $('select[name="conflictEnd-'+index+'"]').val();
-
+		var start = $('input[name="conflict'+index+'-start"]').val();
+		var end = $('input[name="conflict'+index+'-end"]').val();
 		// Process these - End must be later than Start
 		var endSplit = end.split(":");
 		var startSplit = start.split(":");
 		if(endSplit[0] < startSplit[0]) {
-			end = (startSplit[1] == 30) ? (startSplit[0] + 1) + ":00" : startSplit[0] + ":30";
+			end = (startSplit[1] == 30) ? (parseInt(startSplit[0]) + 1) + ":00" : startSplit[0] + ":30";
 		} else if(endSplit[0] == startSplit[0] && startSplit[1] == 30) {
-			end = (startSplit[0] + 1) + ":00";
+			end = (parseInt(startSplit[0]) + 1) + ":00";
 		}
 
 		// Save

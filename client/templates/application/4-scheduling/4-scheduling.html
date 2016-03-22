@@ -2,7 +2,7 @@
 	<div class="column">
 		<h1>Scheduling</h1>
 		<form class="ui form">
-			{{#unless bandemonium}}
+			{{#if bandemonium}}
 				<h3>Select Days Off Campus</h3>
 				<p>Bandemonium is Sundays, 5-7pm. If you already know of some Sundays when you will be off campus, please check those off here.</p>
 				<div class="grouped fields">
@@ -82,7 +82,7 @@
 						{{> recurringBlock preference}}
 					{{/each}}
 				</div>
-			{{/unless}}
+			{{/if}}
 			<div class="field" style="margin-bottom: 1em">
 				<button class="ui basic button" id="goBackButton" type="button">Go back</button>
 				<button class="ui green button" id="continueButton" type="submit">Continue</button>
@@ -112,7 +112,8 @@
 			<div class="twelve wide field">
 				<div class="field" style="margin-bottom: 1em">
 					<label>Start time</label>
-					<select class="dropdown {{mode}}Input" data-index="{{conflictIndex}}" name="{{mode}}Start-{{conflictIndex}}">
+					<input type="hidden" name="{{mode}}{{conflictIndex}}-start" data-index="{{conflictIndex}}" value="{{start}}">
+					<select class="dropdown {{mode}}Input" data-mode="{{mode}}" data-field="start" data-index="{{conflictIndex}}" name="{{mode}}Start-{{conflictIndex}}">
 						<option value="">Start time</option>
 						{{#let startTime=start}}
 							{{#each times "start"}}
@@ -123,7 +124,8 @@
 				</div>
 				<div class="field">
 					<label>End time</label>
-					<select class="dropdown {{mode}}Input" data-index="{{conflictIndex}}" name="{{mode}}End-{{conflictIndex}}">
+					<input type="hidden" name="{{mode}}{{conflictIndex}}-end" data-index="{{conflictIndex}}" value="{{end}}">
+					<select class="dropdown {{mode}}Input" data-mode="{{mode}}" data-field="end" data-index="{{conflictIndex}}" name="{{mode}}End-{{conflictIndex}}">
 						<option value="">End time</option>
 						{{#let endTime=end}}
 							{{#each times "end"}}
