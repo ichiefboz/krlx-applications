@@ -1,7 +1,7 @@
 <template name="step5">
 	<div class="column">
 		<h1>Review {{type}} Application</h1>
-		<div class="ui stackable grid">
+		<div class="ui stackable grid" style="padding-bottom: 1rem;">
 			<div class="eight wide column">
 				<div class="ui red segment">
 					<h3>Content</h3>
@@ -74,27 +74,28 @@
 					<h3>Signatures</h3>
 					<p>All DJs must read and agree to the following before your show will be scheduled.</p>
 					<p><strong>"I am a current Carleton student in good standing with the College, and am eligible to participate in KRLX. I understand that it is my responsibility to know and follow the KRLX operating guidelines."</strong></p>
-					<p>To sign this statement, enter your full name in the correct box below. This comprises your electronic signature and is legally binding per Minn. Stat. 325L.07.</p>
+					<p>To sign this application, each DJ must enter their name in the correct box below. This comprises your electronic signature and is legally binding per Minn. Stat. 325L.07.</p>
 					<form name="djSignatures" class="ui form">
 						{{#each dj in djs}}
 							<div class="field">
 								<label>{{displayName dj}}</label>
 								{{#if djCleared dj "isOK"}}
-									<input type="text" name="signature-{{dj}}" placeholder="Enter your full name to serve as your signature">
+									<input type="text" data-match="{{displayName dj}}" name="signature-{{dj}}" placeholder="{{displayName dj}}">
 								{{else}}
 									<input type="text" disabled placeholder="Missing details from {{displayName dj}}">
 								{{/if}}
 							</div>
 						{{/each}}
+						<div class="field">
+							<button type="button" class="ui huge fluid primary button">Submit Application</button>
+						</div>
+						<div class="field">
+							<p>You can edit any part of this application later from {{#linkTo route="shows.my.list"}}My Shows{{/linkTo}}.</p>
+						</div>
 					</form>
 				</div>
 			</div>
-			<div class="sixteen wide column" style="padding-top: 0">
-				<p><button type="button" class="ui huge fluid primary button">Submit Application</button></p>
-			</div>
 		</div>
-		<div style="padding-bottom: 1rem">
-			<p>You can edit any part of this application later by going to {{#linkTo route="shows.my.list"}}My Shows{{/linkTo}}.</p>
-		</div>
+
 	</div>
 </template>
