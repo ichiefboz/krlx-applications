@@ -11,6 +11,9 @@ Template.step1.helpers({
 	inReview: function() {
 		return this.step == 5;
 	},
+	justCreated: function() {
+		return this.step == 1;
+	},
 	errorPossibilities: [
 		{code: "not-signed-in", header: "Not Signed In", message: "You need to be signed in to save your application! Click \"Sign In\" below to sign in with your Carleton account, then try again.", flags: ["nevermind", "signin"]},
 		{code: "show-does-not-exist", header: "Show disappeared", message: "Looks like that show doesn't exist, likely beacuse its owner deleted it. You should head on back to My Shows.", flags: ["myshows"]},

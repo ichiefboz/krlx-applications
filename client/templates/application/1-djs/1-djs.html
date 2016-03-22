@@ -1,12 +1,12 @@
 <template name="step1">
 	<div class="column">
-		{{#unless inReview}}
+		{{#if justCreated}}
 		<div class="ui info message">
 			<div class="header">Application Created!</div>
 			<p>Congratulations, your application has been created and saved. It will be saved periodically as you navigate back and forth between the steps.</p>
 			<p>An email is on its way to you with further instructions, including how to return to the application in case you can't finish it right now.</p>
 		</div>
-		{{/unless}}
+		{{/if}}
 		<h1>DJ List</h1>
 		<p>Please enter the Carleton username (<code>fschiller</code>) or email address (<code>fschiller@carleton.edu</code>) belonging to each DJ in your show. Order doesn't matter.</p>
 		<p>If you're flying solo, you don't need to touch anything here.</p>
