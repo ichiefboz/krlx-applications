@@ -38,9 +38,27 @@
 			{{/each}}
 			{{#unless bandemonium}}
 				<h2 class="ui sub header">Other conflicts</h2>
-				<p>{{#each conflicts.other}}
-					{{displayDays days}}: {{displayTime start}} - {{displayTime end}}<br>
-				{{/each}}</p>
+				<div class="ui divided list">
+					{{#each conflicts.other}}
+						<div class="item">
+							{{#each displayDays days}}
+								<div class="ui {{color}} horizontal label">{{display}}</div>
+							{{/each}}
+							{{displayTime start}} - {{displayTime end}}
+						</div>
+					{{/each}}
+				</div>
+				<h2 class="ui sub header">Preferences</h2>
+				<div class="ui divided list">
+					{{#each preferences}}
+						<div class="item">
+							{{#each displayDays days}}
+								<div class="ui {{color}} horizontal label">{{display}}</div>
+							{{/each}}
+							{{displayTime start}} - {{displayTime end}}
+						</div>
+					{{/each}}
+				</div>
 			{{/unless}}
 			<p><button type="button" class="large ui button">Back to Scheduling</button></p>
 		</div>
