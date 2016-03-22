@@ -9,7 +9,7 @@
 						<h2 class="ui sub header">{{field}}</h2>
 						<p>{{data}}</p>
 					{{/each}}
-					<p><button type="button" class="large ui button">Back to Content</button></p>
+					<p><button type="button" class="large ui button backTo" data-destination="3">Back to Content</button></p>
 				</div>
 			</div>
 			<div class="eight wide column">
@@ -32,7 +32,7 @@
 						  </div>
 						{{/each}}
 					</div>
-					<p><button type="button" class="large ui button">Back to DJs</button></p>
+					<p><button type="button" class="large ui button backTo" data-destination="1">Back to DJs</button></p>
 				</div>
 			</div>
 			<div class="eight wide column">
@@ -66,7 +66,7 @@
 							{{/each}}
 						</div>
 					{{/unless}}
-					<p><button type="button" class="large ui button">Back to Scheduling</button></p>
+					<p><button type="button" class="large ui button backTo" data-destination="4">Back to Scheduling</button></p>
 				</div>
 			</div>
 			<div class="eight wide column">
@@ -74,20 +74,24 @@
 					<h3>Signatures</h3>
 					<p>All DJs must read and agree to the following before your show will be scheduled.</p>
 					<p><strong>"I am a current Carleton student in good standing with the College, and am eligible to participate in KRLX. I understand that it is my responsibility to know and follow the KRLX operating guidelines."</strong></p>
-					<p>To sign this application, each DJ must enter their name in the correct box below. This comprises your electronic signature and is legally binding per Minn. Stat. 325L.07.</p>
+					<p>To sign this application, each DJ must enter their name in the correct box below.</p>
 					<form name="djSignatures" class="ui form">
 						{{#each dj in djs}}
 							<div class="field">
 								<label>{{displayName dj}}</label>
-								{{#if djCleared dj "isOK"}}
-									<input type="text" data-match="{{displayName dj}}" name="signature-{{dj}}" placeholder="{{displayName dj}}">
+								{{#if completed}}
+									<input type="text" class="nameInput" readonly value="{{displayName dj}}">
 								{{else}}
-									<input type="text" disabled placeholder="Missing details from {{displayName dj}}">
+									{{#if djCleared dj "isOK"}}
+										<input type="text" class="nameInput" data-match="{{displayName dj}}" name="signature-{{dj}}" placeholder="{{displayName dj}}">
+									{{else}}
+										<input type="text" class="nameInput" disabled placeholder="Missing details from {{displayName dj}}">
+									{{/if}}
 								{{/if}}
 							</div>
 						{{/each}}
 						<div class="field">
-							<button type="button" class="ui huge fluid primary button">Submit Application</button>
+							<button type="submit" class="ui huge fluid primary button" disabled="{{disableButton}}" id="finishApplication">Submit Application</button>
 						</div>
 						<div class="field">
 							<p>You can edit any part of this application later from {{#linkTo route="shows.my.list"}}My Shows{{/linkTo}}.</p>

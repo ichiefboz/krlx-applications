@@ -19,6 +19,9 @@ Template.step5.helpers({
 		}
 		return data;
 	},
+	disableButton: function() {
+		return (this.completed == null || Session.get("djErrors") == true);
+	},
 	displayDays: function(days) {
 		var weekdays = {
 			sun: {display: "Sunday", color: "grey"},
@@ -79,6 +82,8 @@ Template.step5.helpers({
 			if(dj.terms == null) errors.push("Missing experience");
 			if(dj.terms < 0 || dj.terms > 12) errors.push("Invalid experience");
 
+			if(errors.length > 0) Session.set("djErrors", true);
+
 			if(returnMode == "isOK") {
 				return errors.length == 0;
 			} else {
@@ -111,5 +116,21 @@ Template.step5.rendered = function() {
 }
 
 Template.step5.created = function() {
-	Session.set("error-msgs", []);
+	Session.set("djErrors", false);
 }
+
+Template.step5.events({
+	"input .nameInput": function() {
+		var disable = false;
+		$(".nameInput").each(function() {
+			var enteredValue = $(this).val();
+			var expectedValue = $(this).data("match");
+			if(enteredValue != expectedValue) disable = true;
+		});
+		$("#finishApplication").prop("disabled", disable);
+	},
+	"click .backTo": function(event) {
+		var destination = parseInt(event.currentTarget.dataset.destination);
+		Router.go("shows.application", {_id: this._id, step: destination});
+	}
+})
