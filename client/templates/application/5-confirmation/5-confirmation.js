@@ -39,7 +39,7 @@ Template.step5.helpers({
 		// time comes in as 24 hours
 		var timeSplit = time.split(":");
 		var hours = timeSplit[0];
-		var am = (hours >= 12) ? "PM" : "AM";
+		var am = (hours >= 12 && hours <= 23) ? "PM" : "AM";
 		var displayHours = (hours >= 12) ? hours - 12 : hours;
 		if(displayHours == 0) displayHours = 12;
 
