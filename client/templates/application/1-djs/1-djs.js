@@ -8,6 +8,9 @@ Template.step1.helpers({
 	displayIndex: function(index) {
 		return index + 1;
 	},
+	inReview: function() {
+		return this.step == 5;
+	},
 	errorPossibilities: [
 		{code: "not-signed-in", header: "Not Signed In", message: "You need to be signed in to save your application! Click \"Sign In\" below to sign in with your Carleton account, then try again.", flags: ["nevermind", "signin"]},
 		{code: "show-does-not-exist", header: "Show disappeared", message: "Looks like that show doesn't exist, likely beacuse its owner deleted it. You should head on back to My Shows.", flags: ["myshows"]},
@@ -27,6 +30,7 @@ Template.step1.events({
 	"submit .ui.form": function(event) {
 		event.preventDefault();
 		var djs = Session.get("djs");
+		djs.sort();
 		Meteor.call("updateShowStep1", this._id, djs, function(error, result) {
 			if(error) {
 				$("#error-"+error.error).modal("show");

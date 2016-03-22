@@ -1,10 +1,12 @@
 <template name="step1">
 	<div class="column">
+		{{#unless inReview}}
 		<div class="ui info message">
 			<div class="header">Application Created!</div>
 			<p>Congratulations, your application has been created and saved. It will be saved periodically as you navigate back and forth between the steps.</p>
 			<p>An email is on its way to you with further instructions, including how to return to the application in case you can't finish it right now.</p>
 		</div>
+		{{/unless}}
 		<h1>DJ List</h1>
 		<p>Please enter the Carleton username (<code>fschiller</code>) or email address (<code>fschiller@carleton.edu</code>) belonging to each DJ in your show. Order doesn't matter.</p>
 		<p>If you're flying solo, you don't need to touch anything here.</p>
@@ -21,6 +23,11 @@
 				<button class="ui basic button" id="myShowsButton" type="button">My Shows</button>
 				<button class="ui green button" id="continueButton" type="submit">Continue</button>
 			</div>
+			{{#if inReview}}
+				<div class="field">
+					<button class="ui large primary button" id="backToReview" type="submit">Back to Review</button>
+				</div>
+			{{/if}}
 		</form>
 		{{#each errorPossibilities}}
 			{{> errorModal}}
