@@ -56,7 +56,7 @@ Template.step5.helpers({
 		if(dj) {
 			var errors = [];
 
-			// Validate em.
+			// Validate DJs, since this is the part where it's easy to go wrong.
 			if(dj.name == null) {
 				errors.push("Missing name");
 			} else if(dj.name.length < 3) {

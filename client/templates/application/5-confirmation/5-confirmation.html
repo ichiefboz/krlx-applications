@@ -1,70 +1,100 @@
 <template name="step5">
 	<div class="column">
 		<h1>Review {{type}} Application</h1>
-		<div class="ui red segment">
-			<h3>Content</h3>
-			{{#each contentData}}
-				<h2 class="ui sub header">{{field}}</h2>
-				<p>{{data}}</p>
-			{{/each}}
-			<p><button type="button" class="large ui button">Back to Content</button></p>
-		</div>
-		<div class="ui blue segment">
-			<h3>DJs</h3>
-			<div class="ui divided list">
-				{{#each dj in djs}}
-					<div class="item">
-				    {{#if djCleared dj "isOK"}}
-							<div class="ui green horizontal label">
-								OK
-							</div>
-						{{else}}
-							<div class="ui red horizontal icon label">
-								<i class="warning icon"></i>
-								{{djCleared dj "message"}}
-							</div>
-						{{/if}}
-				    {{displayName dj}}
-				  </div>
-				{{/each}}
+		<div class="ui stackable grid">
+			<div class="eight wide column">
+				<div class="ui red segment">
+					<h3>Content</h3>
+					{{#each contentData}}
+						<h2 class="ui sub header">{{field}}</h2>
+						<p>{{data}}</p>
+					{{/each}}
+					<p><button type="button" class="large ui button">Back to Content</button></p>
+				</div>
 			</div>
-			<p><button type="button" class="large ui button">Back to DJs</button></p>
-		</div>
-		<div class="ui green segment">
-			<h3>Scheduling</h3>
-			{{#each schedulingData}}
-				<h2 class="ui sub header">{{field}}</h2>
-				<p>{{data}}</p>
-			{{/each}}
-			{{#unless bandemonium}}
-				<h2 class="ui sub header">Other conflicts</h2>
-				<div class="ui divided list">
-					{{#each conflicts.other}}
-						<div class="item">
-							{{#each displayDays days}}
-								<div class="ui {{color}} horizontal label">{{display}}</div>
-							{{/each}}
-							{{displayTime start}} - {{displayTime end}}
-						</div>
-					{{/each}}
+			<div class="eight wide column">
+				<div class="ui blue segment">
+					<h3>DJs</h3>
+					<div class="ui divided list">
+						{{#each dj in djs}}
+							<div class="item">
+						    {{#if djCleared dj "isOK"}}
+									<div class="ui green horizontal label">
+										OK
+									</div>
+								{{else}}
+									<div class="ui red horizontal icon label">
+										<i class="warning icon"></i>
+										{{djCleared dj "message"}}
+									</div>
+								{{/if}}
+						    {{displayName dj}}
+						  </div>
+						{{/each}}
+					</div>
+					<p><button type="button" class="large ui button">Back to DJs</button></p>
 				</div>
-				<h2 class="ui sub header">Preferences</h2>
-				<div class="ui divided list">
-					{{#each preferences}}
-						<div class="item">
-							{{#each displayDays days}}
-								<div class="ui {{color}} horizontal label">{{display}}</div>
-							{{/each}}
-							{{displayTime start}} - {{displayTime end}}
-						</div>
+			</div>
+			<div class="eight wide column">
+				<div class="ui green segment">
+					<h3>Scheduling</h3>
+					{{#each schedulingData}}
+						<h2 class="ui sub header">{{field}}</h2>
+						<p>{{data}}</p>
 					{{/each}}
+					{{#unless bandemonium}}
+						<h2 class="ui sub header">Other conflicts</h2>
+						<div class="ui divided list">
+							{{#each conflicts.other}}
+								<div class="item">
+									{{#each displayDays days}}
+										<div class="ui {{color}} horizontal label">{{display}}</div>
+									{{/each}}
+									{{displayTime start}} - {{displayTime end}}
+								</div>
+							{{/each}}
+						</div>
+						<h2 class="ui sub header">Preferences</h2>
+						<div class="ui divided list">
+							{{#each preferences}}
+								<div class="item">
+									{{#each displayDays days}}
+										<div class="ui {{color}} horizontal label">{{display}}</div>
+									{{/each}}
+									{{displayTime start}} - {{displayTime end}}
+								</div>
+							{{/each}}
+						</div>
+					{{/unless}}
+					<p><button type="button" class="large ui button">Back to Scheduling</button></p>
 				</div>
-			{{/unless}}
-			<p><button type="button" class="large ui button">Back to Scheduling</button></p>
+			</div>
+			<div class="eight wide column">
+				<div class="ui yellow segment">
+					<h3>Signatures</h3>
+					<p>All DJs must read and agree to the following before your show will be scheduled.</p>
+					<p><strong>"I am a current Carleton student in good standing with the College, and am eligible to participate in KRLX. I understand that it is my responsibility to know and follow the KRLX operating guidelines."</strong></p>
+					<p>To sign this statement, enter your full name in the correct box below. This comprises your electronic signature and is legally binding per Minn. Stat. 325L.07.</p>
+					<form name="djSignatures" class="ui form">
+						{{#each dj in djs}}
+							<div class="field">
+								<label>{{displayName dj}}</label>
+								{{#if djCleared dj "isOK"}}
+									<input type="text" name="signature-{{dj}}" placeholder="Enter your full name to serve as your signature">
+								{{else}}
+									<input type="text" disabled placeholder="Missing details from {{displayName dj}}">
+								{{/if}}
+							</div>
+						{{/each}}
+					</form>
+				</div>
+			</div>
+			<div class="sixteen wide column" style="padding-top: 0">
+				<p><button type="button" class="ui huge fluid primary button">Submit Application</button></p>
+			</div>
 		</div>
-		<div class="ui yellow segment">
-			<h3>Signatures</h3>
+		<div style="padding-bottom: 1rem">
+			<p>You can edit any part of this application later by going to {{#linkTo route="shows.my.list"}}My Shows{{/linkTo}}.</p>
 		</div>
-		<p><button type="button" class="ui huge fluid primary button">Submit Application</button></p>
 	</div>
 </template>
