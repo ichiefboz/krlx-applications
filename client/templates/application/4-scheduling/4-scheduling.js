@@ -149,7 +149,6 @@ Template.step4.events({
 	},
 	"submit .ui.form": function(event) {
 		event.preventDefault();
-		var form = event.currentTarget;
 		var updateData = {};
 		if(this.type == "Bandemonium") {
 			var sundays = [];
@@ -167,8 +166,8 @@ Template.step4.events({
 				classes: classConflicts,
 				other: Session.get("otherConflicts")
 			};
-			updateData.safeHarbor = form["request-safe-harbor"].value;
-			updateData.preferredLength = form["preferred-length"].value;
+			updateData.safeHarbor = $("[name='requestSafeHarbor']:checked").val();
+			updateData.preferredLength = parseInt($("[name='preferredLength']:checked").val());
 		}
 		Meteor.call("updateShow", this._id, updateData);
 		if(this.step <= 4) {
