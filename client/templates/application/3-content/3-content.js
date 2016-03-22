@@ -26,6 +26,9 @@ Template.step3.rendered = function() {
 				{type: "doesntContain[cocksucker]", prompt: "KRLX guidelines prohibit the word cocksucker in show titles"},
 				{type: "doesntContain[tits]", prompt: "KRLX guidelines prohibit the word tits in show titles"}
 			]};
+			fieldRules["description"] = {rules: [
+				{type: "minLength[10]", prompt: "Please enter a genre or description of your show"}
+			]}
 			break;
 		case "Bandemonium":
 			fieldRules["theme"] = {rules: [
