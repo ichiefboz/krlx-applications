@@ -32,7 +32,7 @@ Template.step3.rendered = function() {
 				{type: "empty", prompt: "You need to specify the artist or theme that you'll be exploring during your show"},
 			]};
 			fieldRules["why"] = {rules: [
-				{type: "minLength[100]", prompt: "Your response to why we should pick your show must be 100 characters or longer"}
+				{type: "minLength[50]", prompt: "Your response to why we should pick your show must be 50 characters or longer"}
 			]};
 			fieldRules["description"] = {rules: [
 				{type: "minLength[30]", prompt: "The description of the show, which will be posted to the web, must be at least 30 characters, however we encourage you to describe your show in as much detail as you wish"}
