@@ -30,7 +30,7 @@ Template.step1.events({
 	"click #myShowsButton": function() {
 		Router.go("shows.my.list");
 	},
-	"submit .ui.form": function(event) {
+	"click .submit.ui.button": function(event) {
 		event.preventDefault();
 		var djs = Session.get("djs");
 		djs.sort();
@@ -39,7 +39,8 @@ Template.step1.events({
 				$("#error-"+error.error).modal("show");
 			}
 			if(result) {
-				Router.go("shows.application", {_id: result, step: 2});
+				var step = (event.currentTarget.id == "backToReview") ? 5 : 2;
+				Router.go("shows.application", {_id: result, step: step});
 			}
 		});
 	},
