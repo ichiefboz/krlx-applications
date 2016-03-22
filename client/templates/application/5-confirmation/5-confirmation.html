@@ -36,6 +36,12 @@
 				<h2 class="ui sub header">{{field}}</h2>
 				<p>{{data}}</p>
 			{{/each}}
+			{{#unless bandemonium}}
+				<h2 class="ui sub header">Other conflicts</h2>
+				<p>{{#each conflicts.other}}
+					{{displayDays days}}: {{displayTime start}} - {{displayTime end}}<br>
+				{{/each}}</p>
+			{{/unless}}
 			<p><button type="button" class="large ui button">Back to Scheduling</button></p>
 		</div>
 		<div class="ui yellow segment">

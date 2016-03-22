@@ -19,6 +19,24 @@ Template.step5.helpers({
 		}
 		return data;
 	},
+	displayDays: function(days) {
+		var weekdays = {sun: "Sunday", mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday", sat: "Saturday"};
+		var returnDays = [];
+		for(var i = 0; i < days.length; i++) {
+			returnDays.push(weekdays[days[i]]);
+		}
+		return returnDays.join(", ");
+	},
+	displayTime: function(time) {
+		// time comes in as 24 hours
+		var timeSplit = time.split(":");
+		var hours = timeSplit[0];
+		var am = (hours >= 12) ? "PM" : "AM";
+		var displayHours = (hours >= 12) ? hours - 12 : hours;
+		if(displayHours == 0) displayHours = 12;
+
+		return displayHours + ":" + timeSplit[1] + " " + am;
+	},
 	displayName: function(netid) {
 		var dj = DJs.findOne({netid: netid});
 		if(dj) {
