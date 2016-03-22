@@ -1,14 +1,15 @@
 <template name="step5">
 	<div class="column">
 		<h1>Review {{type}} Application</h1>
-		<div class="ui purple segment">
+		<div class="ui red segment">
 			<h3>Content</h3>
 			{{#each contentData}}
 				<h2 class="ui sub header">{{field}}</h2>
-				<span>{{data}}</span>
+				<p>{{data}}</p>
 			{{/each}}
+			<p><button type="button" class="large ui button">Back to Content</button></p>
 		</div>
-		<div class="ui green segment">
+		<div class="ui blue segment">
 			<h3>DJs</h3>
 			<div class="ui divided list">
 				{{#each dj in djs}}
@@ -27,9 +28,19 @@
 				  </div>
 				{{/each}}
 			</div>
+			<p><button type="button" class="large ui button">Back to DJs</button></p>
 		</div>
-		<div class="ui orange segment">
+		<div class="ui green segment">
 			<h3>Scheduling</h3>
+			{{#each schedulingData}}
+				<h2 class="ui sub header">{{field}}</h2>
+				<p>{{data}}</p>
+			{{/each}}
+			<p><button type="button" class="large ui button">Back to Scheduling</button></p>
 		</div>
+		<div class="ui yellow segment">
+			<h3>Signatures</h3>
+		</div>
+		<p><button type="button" class="ui huge fluid primary button">Submit Application</button></p>
 	</div>
 </template>

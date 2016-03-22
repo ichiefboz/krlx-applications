@@ -9,7 +9,13 @@ Template.step5.helpers({
 				{field: "Theme", data: this.theme},
 				{field: "Website description", data: this.description},
 				{field: "Why we should pick you", data: this.why},
-			]
+			];
+		} else {
+			data = [
+				{field: "Title", data: this.title},
+				{field: "Genre/description", data: this.description}
+			];
+			if(this.type == "Student Org") data.unshift({field: "Sponsoring organization", data: this.sponsor})
 		}
 		return data;
 	},
@@ -57,6 +63,20 @@ Template.step5.helpers({
 				}
 			}
 		}
+	},
+	schedulingData: function() {
+		var data = [];
+		if(this.type == "Bandemonium") {
+			data = [{field: "Sundays with conflicts", data: this.badSundays.join(", ")}];
+		} else {
+			var safeHarborOptions = {yes: "Yes please", no: "No thanks", meh: "Meh, doesn't matter"}
+			data = [
+				{field: "Preferred length", data: this.preferredLength + " minutes"},
+				{field: "Safe Harbor request", data: safeHarborOptions[this.safeHarbor]},
+				{field: "Classes", data: this.conflicts.classes.join(", ")}
+			];
+		}
+		return data;
 	}
 })
 
