@@ -65,6 +65,8 @@
 								</div>
 							{{/each}}
 						</div>
+						<h2 class="ui sub header">Additional concerns</h2>
+						<p>{{concerns}}</p>
 					{{/unless}}
 					<p><button type="button" class="large ui button backTo" data-destination="4">Back to Scheduling</button></p>
 				</div>
@@ -94,12 +96,23 @@
 							<button type="submit" class="ui huge fluid primary button" disabled="{{disableButton}}" id="finishApplication">Submit Application</button>
 						</div>
 						<div class="field">
-							<p>You can edit any part of this application later from {{#linkTo route="shows.my.list"}}My Shows{{/linkTo}}.</p>
+							<div class="ui visible warning message">
+								<strong>Heads up:</strong> Once your application is submitted you cannot edit or cancel it. Check everything over before clicking Submit.
+							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-
+		<div class="ui modal" id="confirmModal">
+			<div class="header">Confirm Submission</div>
+			<div class="content">
+				Once you submit this application you cannot edit or cancel it. Are you sure you're ready to submit?
+			</div>
+			<div class="actions">
+				<div class="ui cancel red labeled icon button"><i class="remove icon"></i>Nope</div>
+				<div class="ui ok green labeled icon button"><i class="checkmark icon"></i>Yes, submit</div>
+			</div>
+		</div>
 	</div>
 </template>

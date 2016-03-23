@@ -132,5 +132,9 @@ Template.step5.events({
 	"click .backTo": function(event) {
 		var destination = parseInt(event.currentTarget.dataset.destination);
 		Router.go("shows.application", {_id: this._id, step: destination});
+	},
+	"submit .ui.form": function(event) {
+		event.preventDefault();
+		$("#confirmModal").modal("show");
 	}
 })

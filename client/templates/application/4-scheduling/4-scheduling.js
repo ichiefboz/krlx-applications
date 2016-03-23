@@ -174,6 +174,7 @@ Template.step4.events({
 			updateData.safeHarbor = $("[name='requestSafeHarbor']:checked").val();
 			updateData.preferredLength = parseInt($("[name='preferredLength']:checked").val());
 		}
+		updateData.concerns = $("[name='concerns']").val();
 		Meteor.call("updateShow", this._id, updateData);
 		if(this.step <= 4) {
 			Meteor.call("incrementStep", this._id, 5, function(error, result) {
