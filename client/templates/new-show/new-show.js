@@ -9,7 +9,7 @@ var randomName = function() {
 	"keen", "lame", "large", "last", "lasting", "late", "lavish", "lawful", "mad", "madeup", "magnificent", "majestic", "major", "male", "mammoth", "married", "marvelous", "naive", "narrow", "nasty", "natural", "naughty",
 	"obedient", "obese", "oblong", "oblong", "obvious", "occasional", "oily", "palatable", "pale", "paltry", "parallel", "parched", "partial", "passionate", "past", "pastel", "peaceful", "peppery", "perfect", "perfumed", "quaint",
 	"qualified", "radiant", "ragged", "rapid", "rare", "rash", "raw", "recent", "reckless", "rectangular", "sad", "safe", "salty", "same", "sandy", "sane", "sarcastic", "sardonic", "satisfied", "scaly", "scarce", "scared",
-	"scary", "scented", "scholarly", "scientific", "scornful", "scratchy", "scrawny", "second", "secondary", "secondhand", "secret", "selfassured", "selfish", "sentimental", "talkative", "tall", "tame", "tan", "tangible",
+	"scary", "scented", "scholarly", "scientific", "scornful", "scratchy", "scrawny", "secondary", "secondhand", "secret", "selfassured", "selfish", "sentimental", "talkative", "tall", "tame", "tan", "tangible",
 	"tart", "tasty", "tattered", "taut", "tedious", "teeming", "ugly", "ultimate", "unacceptable", "unaware", "uncomfortable", "uncommon", "unconscious", "understated", "unequaled", "vacant", "vague", "vain", "valid", "wan",
 	"warlike", "warm", "warmhearted", "warped", "wary", "wasteful", "watchful", "waterlogged", "watery", "wavy", "yawning", "yearly", "zany"];
 
