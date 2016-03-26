@@ -32,9 +32,13 @@
 							</td>
 							<td>{{showStatus}}</td>
 							<td>
-								<a href="{{pathFor route='shows.application'}}" class="ui primary circular icon button"><i class="edit icon"></i></a>
-								{{#if isOwner}}
-									<a href="" class="ui circular icon delete-show button"><i class="trash icon"></i></a>
+								{{#if completed}}
+									Show Submitted
+								{{else}}
+									<a href="{{pathFor route='shows.application'}}" class="ui primary circular icon button"><i class="edit icon"></i></a>
+									{{#if isOwner}}
+										<a href="" class="ui circular icon delete-show button"><i class="trash icon"></i></a>
+									{{/if}}
 								{{/if}}
 							</td>
 						</tr>
