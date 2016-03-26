@@ -49,10 +49,10 @@ Template.step2.events({
 			for(var i = 0; i < this.djs.length; i++) {
 				var data = {
 					name: form["name-" + this.djs[i]].value,
-					year: form["year-" + this.djs[i]].value,
-					terms: form["terms-" + this.djs[i]].value,
-					phone: form["phone-" + this.djs[i]].value,
-					campusPhone: form["campusPhone-" + this.djs[i]].value
+					year: parseInt(form["year-" + this.djs[i]].value),
+					terms: parseInt(form["terms-" + this.djs[i]].value),
+					phone: parseInt(form["phone-" + this.djs[i]].value),
+					campusPhone: parseInt(form["campusPhone-" + this.djs[i]].value)
 				};
 				Meteor.call("updateDJ", this.djs[i], data);
 			}
