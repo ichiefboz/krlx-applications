@@ -13,6 +13,10 @@ Meteor.publish("myShows", function() {
 	}
 });
 
+Meteor.publish("completedShows", function() {
+	return Shows.find({completed: {$exists: true}});
+});
+
 Meteor.publish("djsInShow", function(showID) {
 	var show = Shows.findOne({_id: showID});
 	return DJs.find({netid: {$in: show.djs}}, {fields: {

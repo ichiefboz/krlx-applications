@@ -116,7 +116,7 @@ Template.step5.rendered = function() {
 	$("#confirmModal").modal({onApprove: function() {
 		Meteor.call("finalValidateShow", $("#yesImSureButton").data("show-id"), function(error, result) {
 			if(result) {
-				Router.go("shows.application.finished", {_id: result});
+				Router.go("shows.view", {_id: result});
 			}
 		});
 	}})
