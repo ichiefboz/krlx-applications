@@ -1,6 +1,6 @@
 <template name="viewShow">
 	<div class="column">
-		<h1>Application Details</h1>
+		<h1>{{#if bandemonium}}Bandemonium - {{theme}}{{else}}{{title}} ({{type}}){{/if}}</h1>
 		<p><a class="ui huge primary button" href="{{pathFor route='shows.my.list'}}">Back to My Shows</a></p>
 		<table class="ui table">
 			<thead>
@@ -22,11 +22,50 @@
 				{{#if org}}<tr><td>Sponsor</td><td>{{sponsor}}</td></tr>{{/if}}
 				<tr><td>{{#if bandemonium}}Website {{/if}}Description</td><td>{{description}}</td></tr>
 				{{#if bandemonium}}<tr><td>Why should we pick you</td><td>{{why}}</td></tr>{{/if}}
-				<tr><td>DJs</td><td>{{djs}}</td></tr>
+				<tr><td>DJs</td><td>
+					{{#each dj in djs}}
+						<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>
+					{{/each}}
+				</td></tr>
 				{{#unless bandemonium}}
 					<tr><td>Safe Harbor hours request</td><td>{{safeHarbor}}</td></tr>
 					<tr><td>Preferred length</td><td>{{length}}</td></tr>
+					<tr><td>Classes</td><td>{{classes}}</td></tr>
+					<tr><td>Other conflicts</td><td>
+						<div class="ui divided list">
+							{{#each conflicts.other}}
+								<div class="item">
+									{{#each displayDays days}}
+										<div class="ui {{color}} horizontal label">{{display}}</div>
+									{{/each}}
+									{{displayTime start}} - {{displayTime end}}
+								</div>
+							{{else}}
+								<div class="item">
+									No other conflicts entered
+								</div>
+							{{/each}}
+						</div>
+					</td></tr>
+					<tr><td>Preferences</td><td>
+						<div class="ui divided list">
+							{{#each preferences}}
+								<div class="item">
+									{{#each displayDays days}}
+										<div class="ui {{color}} horizontal label">{{display}}</div>
+									{{/each}}
+									{{displayTime start}} - {{displayTime end}}
+								</div>
+							{{else}}
+								<div class="item">
+									No preferences entered
+								</div>
+							{{/each}}
+						</div>
+					</td></tr>
 				{{/unless}}
+				<tr><td>Additional concerns</td><td>{{concerns}}</td></tr>
+				<tr><td>Signatures verified</td><td>{{#if completed}}<i class="ui green checkmark icon"></i>All DJs have signed{{else}}<i class="ui red remove icon"></i>Missing signatures{{/if}}</td></tr>
 			</tbody>
 		</table>
 	</div>
