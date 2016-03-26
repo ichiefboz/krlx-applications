@@ -1,0 +1,33 @@
+<template name="viewShow">
+	<div class="column">
+		<h1>Application Details</h1>
+		<p><a class="ui huge primary button" href="{{pathFor route='shows.my.list'}}">Back to My Shows</a></p>
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th class="five wide">Field</th>
+					<th class="eleven wide">Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>Show ID</td><td>{{_id}}</td></tr>
+				<tr><td>Creation timestamp</td><td>{{createdAt}}</td></tr>
+				<tr><td>Submission timestamp</td><td>{{completed}}</td></tr>
+				{{#if standard}}<tr><td>Priority group</td><td><div class="ui circular {{color prio}} label">{{prio}}</div></td></tr>{{/if}}
+				{{#if bandemonium}}
+					<tr><td>Theme</td><td>{{theme}}</td></tr>
+				{{else}}
+					<tr><td>Title</td><td>{{title}}</td></tr>
+				{{/if}}
+				{{#if org}}<tr><td>Sponsor</td><td>{{sponsor}}</td></tr>{{/if}}
+				<tr><td>{{#if bandemonium}}Website {{/if}}Description</td><td>{{description}}</td></tr>
+				{{#if bandemonium}}<tr><td>Why should we pick you</td><td>{{why}}</td></tr>{{/if}}
+				<tr><td>DJs</td><td>{{djs}}</td></tr>
+				{{#unless bandemonium}}
+					<tr><td>Safe Harbor hours request</td><td>{{safeHarbor}}</td></tr>
+					<tr><td>Preferred length</td><td>{{length}}</td></tr>
+				{{/unless}}
+			</tbody>
+		</table>
+	</div>
+</template>
