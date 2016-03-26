@@ -1,8 +1,17 @@
 Template.myShows.helpers({
-	currentApplications: function() {
-		return Shows.find({});
+	activeApplications: function() {
+		return Shows.find({completed: {$exists: false}});
 	},
-	hasApplications: function() {
+	completedApplications: function() {
+		return Shows.find({completed: {$exists: true}});
+	},
+	hasActiveApplications: function() {
+		return (Shows.find({completed: {$exists: false}}).count() > 0);
+	},
+	hasCompletedApplications: function() {
+		return (Shows.find({completed: {$exists: true}}).count() > 0);
+	},
+	hasAnyApplications: function() {
 		return (Shows.find({}).count() > 0);
 	},
 	isOwner: function() {

@@ -3,19 +3,58 @@
 		{{#unless ignoreHeaders}}
 			<h1 class="ui header">My Shows</h1>
 		{{/unless}}
-		<h3 class="ui header">Current Applications</h3>
-		{{#if hasApplications}}
+		{{#unless hasAnyApplications}}
+			<p>Looks like you don't have any applications for Spring Term 2016. You can add one by {{#linkTo path="shows.application.new"}}clicking here{{/linkTo}} or by clicking "Start application" in the sidebar.</p>
+		{{/unless}}
+		{{#if hasCompletedApplications}}
+		<h3 class="ui header">Completed Applications</h3>
+		<table class="ui green table">
+			<thead>
+				<tr>
+					<th class="nine wide">Show Name</th>
+					<th class="four wide">DJs</th>
+					<th class="three wide">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each completedApplications}}
+					<tr>
+						<td>{{title}}</td>
+						<td>
+							<div class="hide-tablet">
+								{{#each dj in djs}}
+									<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>
+								{{/each}}
+							</div>
+							<div class="only-tablet">
+								<ul>
+									{{#each dj in djs}}<li>{{displayName dj}}</li>{{/each}}
+								</ul>
+							</div>
+						</td>
+						<td>
+							<a href="{{pathFor route='shows.application'}}" class="ui green circular icon button"><i class="unhide icon"></i></a>
+							{{#if isOwner}}
+								<a href="" class="ui circular icon delete-show button"><i class="trash icon"></i></a>
+							{{/if}}
+						</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+		{{/if}}
+		{{#if hasActiveApplications}}
+		<h3 class="ui header">Active Applications</h3>
 			<table class="ui yellow table">
 				<thead>
 					<tr>
-						<th class="six wide">Show Name</th>
+						<th class="nine wide">Show Name</th>
 						<th class="four wide">DJs</th>
-						<th class="three wide">Status</th>
 						<th class="three wide">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					{{#each currentApplications}}
+					{{#each activeApplications}}
 						<tr>
 							<td>{{title}}</td>
 							<td>
@@ -30,23 +69,16 @@
 									</ul>
 								</div>
 							</td>
-							<td>{{showStatus}}</td>
 							<td>
-								{{#if completed}}
-									Show Submitted
-								{{else}}
-									<a href="{{pathFor route='shows.application'}}" class="ui primary circular icon button"><i class="edit icon"></i></a>
-									{{#if isOwner}}
-										<a href="" class="ui circular icon delete-show button"><i class="trash icon"></i></a>
-									{{/if}}
+								<a href="{{pathFor route='shows.application'}}" class="ui primary circular icon button"><i class="edit icon"></i></a>
+								{{#if isOwner}}
+									<a href="" class="ui circular icon delete-show button"><i class="trash icon"></i></a>
 								{{/if}}
 							</td>
 						</tr>
 					{{/each}}
 				</tbody>
 			</table>
-		{{else}}
-			<p>Looks like you don't have any active applications at the moment.</p>
 		{{/if}}
 		<div class="ui modal" id="delete-show-modal">
 			<div class="header">Confirm Deletion<span style="display:none;" id="delete-show-id">asdfasdfasdf</span></div>
