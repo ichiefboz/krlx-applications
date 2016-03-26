@@ -113,6 +113,13 @@ Template.step5.helpers({
 
 Template.step5.rendered = function() {
 	Meteor.subscribe("djsInShow", this.data._id);
+	$("#confirmModal").modal({onApprove: function() {
+		Meteor.call("finalValidateShow", $("#yesImSureButton").data("show-id"), function(error, result) {
+			if(result) {
+				Router.go("shows.application.finished", {_id: result});
+			}
+		});
+	}})
 }
 
 Template.step5.created = function() {
