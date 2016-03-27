@@ -2,6 +2,15 @@
 	display: none;
 }
 
+@media only print {
+	div.hide-print {
+		display: none !important;
+	}
+	div.full-width-on-print {
+		min-width: 100% !important;
+	}
+}
+
 @media only screen and (max-width: 767px) {
 	.ui.menu .toc.item {
 		display: block;

@@ -34,18 +34,18 @@ Template.viewShow.helpers({
 	classes: function() {
 		return this.conflicts.classes.join(", ");
 	},
-	conflicts: function() {
+	offCampus: function() {
 		return this.badSundays.join(", ");
 	},
 	displayDays: function(days) {
 		var weekdays = {
-			sun: {display: "Sunday", color: "grey"},
-			mon: {display: "Monday", color: "olive"},
-			tue: {display: "Tuesday", color: "red"},
-			wed: {display: "Wednesday", color: "blue"},
-			thu: {display: "Thursday", color: "green"},
-			fri: {display: "Friday", color: "yellow"},
-			sat: {display: "Saturday", color: "brown"}
+			sun: {display: "Sunday", displayColor: "grey"},
+			mon: {display: "Monday", displayColor: "olive"},
+			tue: {display: "Tuesday", displayColor: "red"},
+			wed: {display: "Wednesday", displayColor: "blue"},
+			thu: {display: "Thursday", displayColor: "green"},
+			fri: {display: "Friday", displayColor: "yellow"},
+			sat: {display: "Saturday", displayColor: "brown"}
 		};
 		var returnDays = [];
 		for(var i = 0; i < days.length; i++) {
