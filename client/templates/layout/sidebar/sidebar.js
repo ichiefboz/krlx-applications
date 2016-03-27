@@ -35,6 +35,9 @@ Template.sidebar.events({
 	"click a#myShowsLink": function() {
 		Router.go("shows.my.list");
 	},
+	"click a#allShowsLink": function() {
+		Router.go("shows.all.list");
+	},
 	"click a#signOutLink": function() {
 		Meteor.logout();
 	},

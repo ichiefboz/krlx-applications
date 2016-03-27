@@ -13,6 +13,9 @@
 	<a class="{{activeItem 'root'}} item" id="homeLink">Home</a>
 	<a class="{{activeItem 'shows.application.new'}} item" id="startLink">Start application</a>
 	<a class="{{activeItem 'shows.my.list'}} item" id="myShowsLink">My shows</a>
+	{{#if userBoard}}
+		<a class="{{activeItem 'shows.all.list'}} item" id="allShowsLink">All shows</a>
+	{{/if}}
 	<a class="{{activeItem 'schedule'}} item" id="scheduleLink">Schedule</a>
 	{{#if currentUser}}
 		<a class="item" id="signOutLink">Sign out</a>
