@@ -2,76 +2,74 @@
 	<div class="column">
 		<h1>{{#if bandemonium}}Bandemonium - {{theme}}{{else}}{{title}} ({{type}}){{/if}}</h1>
 		<p>Thank you for your application! Please print this page for your records. <a href="{{pathFor route='shows.my.list'}}">Click here to return to My Shows.</a></p>
-		<div id="mainShowData">
-			<table class="ui fluid table">
-				<thead>
-					<tr>
-						<th class="five wide">Field</th>
-						<th class="eleven wide">Value</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr><td>Show ID</td><td>{{_id}}</td></tr>
-					<tr><td>Term</td><td>{{term}}</td></tr>
-					{{#if bandemonium}}
-						<tr><td>Theme</td><td>{{theme}}</td></tr>
-					{{else}}
-						<tr><td>Title</td><td>{{title}}</td></tr>
-					{{/if}}
-					{{#if standard}}<tr><td>Priority group</td><td>
-						<div class="ui circular {{color prio}} label">{{prio}}</div>
-					</td></tr>{{/if}}
-					{{#if org}}<tr><td>Sponsor</td><td>{{sponsor}}</td></tr>{{/if}}
-					<tr><td>{{#if bandemonium}}Website {{/if}}Description</td><td>{{description}}</td></tr>
-					{{#if bandemonium}}<tr><td>Why should we pick you</td><td>{{why}}</td></tr>{{/if}}
-					<tr><td>DJs</td><td>
-						{{#each dj in djs}}
-							<div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div>
-						{{/each}}
+		<table class="ui fluid table">
+			<thead>
+				<tr>
+					<th class="five wide">Field</th>
+					<th class="eleven wide">Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>Show ID</td><td>{{_id}}</td></tr>
+				<tr><td>Term</td><td>{{term}}</td></tr>
+				{{#if bandemonium}}
+					<tr><td>Theme</td><td>{{theme}}</td></tr>
+				{{else}}
+					<tr><td>Title</td><td>{{title}}</td></tr>
+				{{/if}}
+				{{#if standard}}<tr><td>Priority group</td><td>
+					<div class="ui circular {{color prio}} label">{{prio}}</div>
+				</td></tr>{{/if}}
+				{{#if org}}<tr><td>Sponsor</td><td>{{sponsor}}</td></tr>{{/if}}
+				<tr><td>{{#if bandemonium}}Website {{/if}}Description</td><td>{{description}}</td></tr>
+				{{#if bandemonium}}<tr><td>Why should we pick you</td><td>{{why}}</td></tr>{{/if}}
+				<tr><td>DJs</td><td>
+					{{#each dj in djs}}
+						<div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div>
+					{{/each}}
+				</td></tr>
+				{{#if bandemonium}}
+					<tr><td>Sundays off campus</td><td>{{offCampus}}</td></tr>
+				{{else}}
+					<tr><td>Safe Harbor hours request</td><td>{{safeHarbor}}</td></tr>
+					<tr><td>Preferred length</td><td>{{length}}</td></tr>
+					<tr><td>Classes</td><td>{{classes}}</td></tr>
+					<tr><td>Other conflicts</td><td>
+						<div class="ui divided list">
+							{{#each conflicts.other}}
+								<div class="item">
+									{{#each displayDays days}}
+										<div class="ui {{displayColor}} horizontal label">{{display}}</div>
+									{{/each}}
+									{{displayTime start}} - {{displayTime end}}
+								</div>
+							{{else}}
+								<div class="item">
+									No other conflicts entered
+								</div>
+							{{/each}}
+						</div>
 					</td></tr>
-					{{#if bandemonium}}
-						<tr><td>Sundays off campus</td><td>{{offCampus}}</td></tr>
-					{{else}}
-						<tr><td>Safe Harbor hours request</td><td>{{safeHarbor}}</td></tr>
-						<tr><td>Preferred length</td><td>{{length}}</td></tr>
-						<tr><td>Classes</td><td>{{classes}}</td></tr>
-						<tr><td>Other conflicts</td><td>
-							<div class="ui divided list">
-								{{#each conflicts.other}}
-									<div class="item">
-										{{#each displayDays days}}
-											<div class="ui {{displayColor}} horizontal label">{{display}}</div>
-										{{/each}}
-										{{displayTime start}} - {{displayTime end}}
-									</div>
-								{{else}}
-									<div class="item">
-										No other conflicts entered
-									</div>
-								{{/each}}
-							</div>
-						</td></tr>
-						<tr><td>Preferences</td><td>
-							<div class="ui divided list">
-								{{#each preferences}}
-									<div class="item">
-										{{#each displayDays days}}
-											<div class="ui {{displayColor}} horizontal label">{{display}}</div>
-										{{/each}}
-										{{displayTime start}} - {{displayTime end}}
-									</div>
-								{{else}}
-									<div class="item">
-										No preferences entered
-									</div>
-								{{/each}}
-							</div>
-						</td></tr>
-					{{/if}}
-					<tr><td>Additional concerns</td><td>{{concerns}}</td></tr>
-					<tr><td>Signatures verified</td><td>{{#if completed}}<i class="ui green checkmark icon"></i>All DJs have signed{{else}}<i class="ui red remove icon"></i>Missing signatures{{/if}}</td></tr>
-				</tbody>
-			</table>
-		</div>
+					<tr><td>Preferences</td><td>
+						<div class="ui divided list">
+							{{#each preferences}}
+								<div class="item">
+									{{#each displayDays days}}
+										<div class="ui {{displayColor}} horizontal label">{{display}}</div>
+									{{/each}}
+									{{displayTime start}} - {{displayTime end}}
+								</div>
+							{{else}}
+								<div class="item">
+									No preferences entered
+								</div>
+							{{/each}}
+						</div>
+					</td></tr>
+				{{/if}}
+				<tr><td>Additional concerns</td><td>{{concerns}}</td></tr>
+				<tr><td>Signatures verified</td><td>{{#if completed}}<i class="ui green checkmark icon"></i>All DJs have signed{{else}}<i class="ui red remove icon"></i>Missing signatures{{/if}}</td></tr>
+			</tbody>
+		</table>
 	</div>
 </template>
