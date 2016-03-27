@@ -7,3 +7,15 @@ Template.allShows.helpers({
 		return (dj.name == null) ? netid : dj.name;
 	}
 })
+
+Template.allShows.created = function() {
+	var cleared = false;
+	if(Meteor.user()) {
+		if(Meteor.user().krlx) {
+			if(Meteor.user().krlx.board) cleared = true;
+		}
+	}
+
+	// This is for board members only.
+	if(!cleared) Router.go("shows.my.list");
+}
