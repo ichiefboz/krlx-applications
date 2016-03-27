@@ -118,6 +118,11 @@ Template.step5.rendered = function() {
 			if(result) {
 				Router.go("shows.view", {_id: result});
 			}
+			if(error) {
+				$("#errorModalHeader").text(error.reason);
+				$("#errorModalContent").text(error.details);
+				$(".ui.modal").modal("show");
+			}
 		});
 	}})
 }
