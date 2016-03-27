@@ -4,7 +4,7 @@
 			<h1 class="ui header">My Shows</h1>
 		{{/unless}}
 		{{#unless hasAnyApplications}}
-			<p>Looks like you don't have any applications for Spring Term 2016. You can add one by {{#linkTo path="shows.application.new"}}clicking here{{/linkTo}} or by clicking "Start application" in the sidebar.</p>
+			<p>Looks like you don't have any applications for Spring Term 2016. You can add one by {{#linkTo route='shows.application.new'}}clicking here{{/linkTo}} or by clicking "Start application" in the sidebar.</p>
 		{{/unless}}
 		{{#if hasCompletedApplications}}
 		<h3 class="ui header">Completed Applications</h3>
@@ -33,7 +33,7 @@
 							</div>
 						</td>
 						<td>
-							<a href="{{pathFor route='shows.view'}}" class="ui green circular icon button"><i class="unhide icon"></i></a>
+							<a href="{{pathFor route='shows.view'}}" class="ui green circular icon button"><i class="unhide icon"></i>/<i class="print icon"></i></a>
 							{{#if isOwner}}
 								<a href="" class="ui circular icon delete-show button"><i class="trash icon"></i></a>
 							{{/if}}
