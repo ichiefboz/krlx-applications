@@ -6,8 +6,13 @@ Meteor.publish("users", function() {
 
 Meteor.publish("myShows", function() {
 	if(this.userId) {
-		var userNetID = Meteor.users.findOne({"_id": this.userId});
-		return Shows.find({});
+		var userObject = Meteor.users.findOne({"_id": this.userId});
+		if(userObject.krlx) {
+			var netid = userObject.krlx.netid;
+			return Shows.find({djs: {$in: [netid]}});
+		} else {
+			return this.ready();
+		}
 	} else {
 		return this.ready();
 	}
