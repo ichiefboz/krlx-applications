@@ -1,4 +1,7 @@
 Template.allShows.helpers({
+	anyShows: function() {
+		return Shows.find({}).count() > 0;
+	},
 	shows: function() {
 		return Shows.find({}, {sort: {type: -1, priority: 1, completed: 1}});
 	},

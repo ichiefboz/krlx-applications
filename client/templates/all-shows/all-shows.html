@@ -1,7 +1,18 @@
 <template name="allShows">
 	<div class="column">
 		<h1>All Shows</h1>
-		{{#if shows}}
+		{{#if anyShows}}
+			<p>
+				<div class="ui large green labeled icon button">
+					<i class="download icon"></i>
+					Download All Show Data
+				</div>
+				<div class="ui large inverted green labeled icon button">
+					<i class="download icon"></i>
+					Download All DJ Data
+				</div>
+			</p>
+			<p>You can download an individual show as CSV by clicking the <i class="download icon"></i>download icon in its actions column. Or, click the big "Downlaod All Shows as CSV" button to download one big CSV file with everyting in it.</p>
 			<table class="ui table">
 				<thead>
 					<tr>
@@ -19,7 +30,7 @@
 								<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>
 							{{/each}}</td>
 							<td>{{priority}}</td>
-							<td><a href="{{pathFor route='shows.view'}}" class="ui green circular icon button"><i class="unhide icon"></i>/<i class="print icon"></i></a></td>
+							<td><a href="{{pathFor route='shows.view'}}" class="ui green circular icon button"><i class="unhide icon"></i>/<i class="print icon"></i></a> <a href="{{pathFor route='shows.view'}}" class="ui inverted green circular icon button"><i class="download icon"></i></a></td>
 						</tr>
 					{{/each}}
 				</tbody>
