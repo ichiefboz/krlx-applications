@@ -21,3 +21,4 @@ flemay:less-autoprefixer
 accounts-ui
 accounts-google
 iron:router
+email
