@@ -27,7 +27,7 @@ Template.step3.rendered = function() {
 				{type: "doesntContain[tits]", prompt: "KRLX guidelines prohibit the word tits in show titles"}
 			]};
 			fieldRules["description"] = {rules: [
-				{type: "minLength[25]", prompt: "Please enter a genre or description of your show"}
+				{type: "minLength[5]", prompt: "Please enter a genre or description of your show (minimum 5 characters)"}
 			]}
 			break;
 		case "Bandemonium":
