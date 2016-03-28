@@ -10,7 +10,7 @@
 				</div>
 			</div>
 			<div class="thirteen wide column full-width-on-print">
-				<div class="ui secondary menu">
+				<div class="ui secondary menu hide-print">
 					<a class="toc item">
 						<i class="sidebar icon"></i>
 					</a>
@@ -18,8 +18,7 @@
 				<div class="ui main grid container">
 					{{> yield}}
 				</div>
-				<div class="ui secondary menu">
-					
+				<div id="contentOffseterizer" style="height: 1000px" class="hide-print">
 				</div>
 			</div>
 		</div>
