@@ -116,7 +116,7 @@ Template.step5.rendered = function() {
 	$("#confirmModal").modal({onApprove: function() {
 		Meteor.call("finalValidateShow", $("#yesImSureButton").data("show-id"), function(error, result) {
 			if(result) {
-				Router.go("shows.view", {_id: result});
+				Router.go("shows.view", {_id: $("#yesImSureButton").data("show-id")});
 			}
 			if(error) {
 				$("#errorModalHeader").text(error.reason);
@@ -135,8 +135,8 @@ Template.step5.events({
 	"input .nameInput": function() {
 		var disable = false;
 		$(".nameInput").each(function() {
-			var enteredValue = $(this).val();
-			var expectedValue = $(this).data("match");
+			var enteredValue = $(this).val().trim();
+			var expectedValue = $(this).data("match").trim();
 			if(enteredValue != expectedValue) disable = true;
 		});
 		$("#finishApplication").prop("disabled", disable);
