@@ -82,6 +82,6 @@ Template.contactForm.helpers({
 		return (new Date).getFullYear();
 	},
 	displayYear: function() {
-		return (this.year == null) ? (new Date).getFullYear()+4 : this.year;
+		return (this.year == null) ? (new Date).getFullYear()+10 : this.year;
 	}
 })
