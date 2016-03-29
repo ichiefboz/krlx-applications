@@ -24,7 +24,7 @@ Template.viewShow.helpers({
 		return this.priority.charAt(0);
 	},
 	color: function(prio) {
-		var colors = {A: "black", B: "grey", C: "violet", D: "blue", E: "teal", F: "green", G: "olive", H: "yellow", I: "orange", J: "red"};
+		var colors = {A: "black", B: "grey", C: "violet", D: "blue", E: "teal", F: "green", G: "olive", H: "yellow", I: "orange", J: "red", S: "black"};
 		return colors[prio];
 	},
 	displayName: function(netid) {

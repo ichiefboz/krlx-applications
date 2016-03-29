@@ -3,7 +3,7 @@ Template.allShows.helpers({
 		return Shows.find({}).count() > 0;
 	},
 	shows: function() {
-		return Shows.find({}, {sort: {type: -1, priority: 1, completed: 1}});
+		return Shows.find({}, {sort: {board: -1, type: -1, priority: 1, completed: 1}});
 	},
 	displayName: function(netid) {
 		var dj = DJs.findOne({netid: netid});

@@ -18,6 +18,7 @@
 					<tr><td>Title</td><td>{{title}}</td></tr>
 				{{/if}}
 				{{#if standard}}<tr><td>Priority group</td><td>
+					{{#if board}}<div class="ui circular black label">S</div>{{/if}}
 					<div class="ui circular {{color prio}} label">{{prio}}</div>
 				</td></tr>{{/if}}
 				{{#if org}}<tr><td>Sponsor</td><td>{{sponsor}}</td></tr>{{/if}}
