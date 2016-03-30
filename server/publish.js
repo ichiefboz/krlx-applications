@@ -22,6 +22,10 @@ Meteor.publish("completedShows", function() {
 	return Shows.find({completed: {$exists: true}});
 });
 
+Meteor.publish("completedShowsBasic", function() {
+	return Shows.find({completed: {$exists: true}}, {fields: {title: 1}});
+});
+
 Meteor.publish("djsInShow", function(showID) {
 	var show = Shows.findOne({_id: showID});
 	return DJs.find({netid: {$in: show.djs}}, {fields: {
@@ -38,6 +42,18 @@ Meteor.publish("djsInShow", function(showID) {
 Meteor.publish("djBasicDetails", function() {
 	return DJs.find({}, {fields: {
 		"netid": 1,
-		"name": 1
+		"name": 1,
+		"terms": 1
+	}})
+});
+
+Meteor.publish("djAdvDetails", function() {
+	return DJs.find({}, {fields: {
+		"netid": 1,
+		"name": 1,
+		"terms": 1,
+		"year": 1,
+		"board": 1,
+		"phone": 1
 	}})
 })
