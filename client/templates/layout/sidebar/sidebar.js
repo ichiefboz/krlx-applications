@@ -38,6 +38,9 @@ Template.sidebar.events({
 	"click a#allShowsLink": function() {
 		Router.go("shows.all.list");
 	},
+	"click a#allDjsLink": function() {
+		Router.go("djs.active.list");
+	},
 	"click a#signOutLink": function() {
 		Meteor.logout();
 	},
