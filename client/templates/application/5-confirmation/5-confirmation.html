@@ -1,6 +1,15 @@
 <template name="step5">
 	<div class="column">
 		<h1>Review {{type}} Application</h1>
+		<div class="ui icon warning message">
+			<i class="warning icon"></i>
+			<div class="content">
+				<div class="header">
+					Your application is not complete yet!
+				</div>
+				<p>Please review the information below and make sure it is correct. If all is well, enter your name(s) in the space(s) provided and click "Submit Application". <strong>You cannot be scheduled until you complete this step!</strong></p>
+			</div>
+		</div>
 		<div class="ui stackable grid" style="padding-bottom: 1rem;">
 			<div class="eight wide column">
 				<div class="ui red segment">
@@ -97,7 +106,7 @@
 						</div>
 						<div class="field">
 							<div class="ui visible warning message">
-								<strong>Heads up:</strong> Once your application is submitted you cannot edit or cancel it. Check everything over before clicking Submit.
+								<strong>Heads up:</strong> Once your application is submitted you cannot edit it, but you can cancel it if necessary. Check everything over before clicking Submit.
 							</div>
 						</div>
 					</form>

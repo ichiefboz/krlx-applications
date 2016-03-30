@@ -1,7 +1,13 @@
 <template name="viewShow">
 	<div class="column">
+		<div class="ui success icon message">
+			<i class="checkmark icon"></i>
+			<div class="content">
+				<div class="header">Application Completed</div>
+				Thank you! Your application is now complete. Please print this page for your records, then <a href="{{pathFor route='shows.my.list'}}">click here to return to My Shows</a> or <a href="{{pathFor route='shows.application.new'}}">click here to start another application</a>.
+			</div>
+		</div>
 		<h1>{{#if bandemonium}}Bandemonium - {{theme}}{{else}}{{title}} ({{type}}){{/if}}</h1>
-		<p>Thank you for your application! Please print this page for your records. <a href="{{pathFor route='shows.my.list'}}">Click here to return to My Shows.</a></p>
 		<table class="ui fluid table">
 			<thead>
 				<tr>
