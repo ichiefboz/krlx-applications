@@ -1,18 +1,33 @@
 Template.myShows.helpers({
 	activeApplications: function() {
-		return Shows.find({completed: {$exists: false}});
+		if(Meteor.user()) {
+			var netid = Meteor.user().krlx.netid;
+			return Shows.find({completed: {$exists: false}, djs: {$in: [netid]}});
+		}
 	},
 	completedApplications: function() {
-		return Shows.find({completed: {$exists: true}});
+		if(Meteor.user()) {
+			var netid = Meteor.user().krlx.netid;
+			return Shows.find({completed: {$exists: true}, djs: {$in: [netid]}});
+		}
 	},
 	hasActiveApplications: function() {
-		return (Shows.find({completed: {$exists: false}}).count() > 0);
+		if(Meteor.user()) {
+			var netid = Meteor.user().krlx.netid;
+			return Shows.find({completed: {$exists: false}, djs: {$in: [netid]}}).count() > 0;
+		}
 	},
 	hasCompletedApplications: function() {
-		return (Shows.find({completed: {$exists: true}}).count() > 0);
+		if(Meteor.user()) {
+			var netid = Meteor.user().krlx.netid;
+			return Shows.find({completed: {$exists: true}, djs: {$in: [netid]}}).count() > 0;
+		}
 	},
 	hasAnyApplications: function() {
-		return (Shows.find({}).count() > 0);
+		if(Meteor.user()) {
+			var netid = Meteor.user().krlx.netid;
+			return Shows.find({djs: {$in: [netid]}});
+		};
 	},
 	isOwner: function() {
 		return (this.owner == Meteor.user().krlx.netid);

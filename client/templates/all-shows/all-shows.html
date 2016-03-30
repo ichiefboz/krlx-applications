@@ -2,17 +2,21 @@
 	<div class="column">
 		<h1>All Shows</h1>
 		{{#if anyShows}}
-			<p>
-				<div class="ui large green labeled icon button">
-					<i class="download icon"></i>
-					Download All Show Data
+			<div class="ui warning message">
+				<div class="header">
+					Warning: Downloading CSV files is possible but tricky! Email an IT engineer if you can't figure it out!
 				</div>
-				<div class="ui large inverted green labeled icon button">
+				<p>To download a CSV file, click the download button you're interested in, <strong>THEN REFRESH THE PAGE</strong>. The file will then download. Note that you must then click "All Shows" in the sidebar to come back here.</p>
+				<p><em>DO NOT try to download a CSV file on a phone, unless you know what you're doing.</em></p>
+				<p><strong>Email an IT engineer if you can't figure it out!</strong></p>
+			</div>
+			<p>
+				<div class="ui large green labeled icon button" id="downloadShows">
 					<i class="download icon"></i>
-					Download All DJ Data
+					Download All Shows as CSV
 				</div>
 			</p>
-			<p>You can download an individual show as CSV by clicking the <i class="download icon"></i>download icon in its actions column. Or, click the big "Downlaod All Shows as CSV" button to download one big CSV file with everyting in it.</p>
+			<p>You can download an individual show as CSV by clicking the <i class="download icon"></i>download icon in its actions column. Or, click the big "Downlaod All Shows as CSV" button to download one big CSV file with everyting in it. <strong>Remember to refresh the page once you click a download button!</strong></p>
 			<table class="ui table">
 				<thead>
 					<tr>
@@ -30,7 +34,7 @@
 								<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>
 							{{/each}}</td>
 							<td>{{#if board}}BOARD{{/if}} {{priority}}</td>
-							<td><a href="{{pathFor route='shows.view'}}" class="ui green circular icon button"><i class="unhide icon"></i>/<i class="print icon"></i></a> <a href="{{pathFor route='shows.view'}}" class="ui inverted green circular icon button"><i class="download icon"></i></a></td>
+							<td><a href="{{pathFor route='shows.view'}}" class="ui green circular icon button"><i class="unhide icon"></i>/<i class="print icon"></i></a> <div data-showID="{{_id}}" class="ui inverted green circular icon downloadSingleShow button"><i class="download icon"></i></div></td>
 						</tr>
 					{{/each}}
 				</tbody>
