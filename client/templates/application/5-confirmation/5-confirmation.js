@@ -114,9 +114,10 @@ Template.step5.helpers({
 Template.step5.rendered = function() {
 	Meteor.subscribe("djsInShow", this.data._id);
 	$("#confirmModal").modal({onApprove: function() {
-		Meteor.call("finalValidateShow", $("#yesImSureButton").data("show-id"), function(error, result) {
+		var showID = $("#yesImSureButton").data("show-id");
+		Meteor.call("finalValidateShow", showID, function(error, result) {
 			if(result) {
-				Router.go("shows.view", {_id: $("#yesImSureButton").data("show-id")});
+				Router.go("shows.view", {_id: showID});
 			}
 			if(error) {
 				$("#errorModalHeader").text(error.reason);
@@ -147,6 +148,16 @@ Template.step5.events({
 	},
 	"submit .ui.form": function(event) {
 		event.preventDefault();
-		$("#confirmModal").modal("show");
+		
+		Meteor.call("finalValidateShow", this._id, function(error, result) {
+			if(result) {
+				Router.go("shows.view", {_id: result});
+			}
+			if(error) {
+				$("#errorModalHeader").text(error.reason);
+				$("#errorModalContent").text(error.details);
+				$(".ui.modal").modal("show");
+			}
+		});
 	}
 })

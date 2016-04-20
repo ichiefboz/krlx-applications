@@ -17,7 +17,8 @@
 				</div>
 			</p>
 			<p>You can download an individual show as CSV by clicking the <i class="download icon"></i>download icon in its actions column. Or, click the big "Downlaod All Shows as CSV" button to download one big CSV file with everyting in it. <strong>Remember to refresh the page once you click a download button!</strong></p>
-			<table class="ui table">
+			<p>Yellow rows indicate that additional concerns have been entered for that show.</p>
+			<table class="ui striped table">
 				<thead>
 					<tr>
 						<th class="six wide">Show Title</th>
@@ -28,7 +29,7 @@
 				</thead>
 				<tbody>
 					{{#each shows}}
-						<tr>
+						<tr class="{{#if concerns}}warning{{/if}}">
 							<td>{{title}}</td>
 							<td>{{#each dj in djs}}
 								<p><div class="ui image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{dj}}">{{displayName dj}}</div></p>

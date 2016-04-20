@@ -14,7 +14,7 @@ Template.djList.helpers({
 	list: function() {
 		var includeDjsArray = [];
 		var netids = [];
-		var shows = Shows.find({}).collection._docs._map;
+		var shows = Shows.find({completed: {$exists: true}}).collection._docs._map;
 		for(var showID in shows) {
 			var thisShowDjs = shows[showID].djs;
 			for(var i = 0; i < thisShowDjs.length; i++) {
@@ -25,14 +25,22 @@ Template.djList.helpers({
 			}
 		}
 		includeDjsArray.sort(function(a, b) {
-			return (a.terms == b.terms) ? (a.netid - b.netid) : (b.terms - a.terms);
+			if (a.terms == b.terms) {
+				if(a.year == b.year) {
+					return a.netid.localeCompare(b.netid);
+				} else {
+					return a.year - b.year;
+				}
+			} else {
+				return b.terms - a.terms;
+			}
 		});
 		return includeDjsArray;
 	},
 	newDJs: function() {
 		var includeDjsArray = [];
 		var netids = [];
-		var shows = Shows.find({}).collection._docs._map;
+		var shows = Shows.find({completed: {$exists: true}}).collection._docs._map;
 		for(var showID in shows) {
 			var thisShowDjs = shows[showID].djs;
 			for(var i = 0; i < thisShowDjs.length; i++) {
@@ -46,8 +54,12 @@ Template.djList.helpers({
 			}
 		}
 		includeDjsArray.sort(function(a, b) {
-			return a.netid - b.netid;
-		});
+			if(a.year == b.year) {
+					return a.netid.localeCompare(b.netid);
+				} else {
+					return a.year - b.year;
+				}
+			});
 		return includeDjsArray;
 	}
 })

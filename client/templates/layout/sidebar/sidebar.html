@@ -14,8 +14,8 @@
 	<a class="{{activeItem 'shows.application.new'}} item" id="startLink">Start application</a>
 	<a class="{{activeItem 'shows.my.list'}} item" id="myShowsLink">My shows</a>
 	{{#if userBoard}}
-		<a class="{{activeItem 'shows.all.list'}} item" id="allShowsLink">All shows</a>
-		<a class="{{activeItem 'djs.active.list'}} item" id="allDjsLink">All DJs</a>
+		<a class="{{activeItem 'shows.all.list'}} item" id="allShowsLink">All shows <div class="ui blue label" id="showCountSidebar">{{showCount}}+</div></a>
+		<a class="{{activeItem 'djs.active.list'}} item" id="allDjsLink">All DJs <div class="ui blue label" id="djCountSidebar">{{djCount}}+</div></a>
 	{{/if}}
 	{{#if currentUser}}
 		<a class="item" id="signOutLink">Sign out</a>
@@ -23,4 +23,13 @@
 		<a class="item" id="signInLink">Sign in</a>
 	{{/if}}
 	<a class="item" href="http://www.krlx.org/">Back to krlx.org</a>
+	<div class="item">
+		<div class="header">Other projects</div>
+		<div class="menu">
+			<a class="item" href="http://www.tatebosler.com">tatebosler.com</a>
+			<a class="item" href="https://sayleshill.xyz">sayleshill.xyz</a>
+			<a class="item" href="https://github.com/ichiefboz"><i class="github icon"></i>GitHub: ichiefboz</a>
+			<div class="item">Send feedback (including positive feedback!), bug reports, feature requests, and other comments to <code>boslert at carleton</code>.</div>
+		</div>
+	</div>
 </template>

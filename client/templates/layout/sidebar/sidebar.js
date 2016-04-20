@@ -18,6 +18,12 @@ Template.sidebar.helpers({
 	activeItem: function(destination) {
 		return (Router.current().route.getName() == destination) ? "active" : "";
 	},
+	showCount: function() {
+		return Session.get("showCount");
+	},
+	djCount: function() {
+		return Session.get("djCount");
+	},
 	userBoard: function() {
 		if(Meteor.user()) {
 			if(Meteor.user().krlx) {
@@ -55,3 +61,16 @@ Template.sidebar.events({
 		Router.go("shows.application.new");
 	}
 })
+
+Template.sidebar.rendered = function() {
+	Meteor.call("numberOfCompletedShows", function(error, result) {
+		if(result) {
+			Session.set("showCount", result);
+		}
+	});
+	Meteor.call("numberOfActiveDjs", function(error, result) {
+		if(result) {
+			Session.set("djCount", result);
+		}
+	});
+}

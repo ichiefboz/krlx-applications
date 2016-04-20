@@ -16,7 +16,7 @@
 				{{#each list}}
 					<tr>
 						<td><div class="ui {{#if board}}blue{{/if}} image label"><img src="https://apps.carleton.edu/stock/ldapimage.php?id={{netid}}">{{name}}{{#if board}}<div class="detail">Board of Directors</div>{{/if}}</div></td>
-						<td>{{netid}}</td>
+						<td><code>{{netid}}</code></td>
 						<td>{{year}}</td>
 						<td>{{terms}}</td>
 						<td>{{phone}}</td>
@@ -28,7 +28,7 @@
 		<p>This is the list of NetIDs that you can copy and paste into Sympa for automatic list creation.</p>
 		<ul>
 			{{#each list}}
-				<li><code>{{netid}}</code></li>
+				<li><code>{{netid}}@carleton.edu</code></li>
 			{{else}}
 				<li>Just kidding, there aren't any DJs signed up yet.</li>
 			{{/each}}
